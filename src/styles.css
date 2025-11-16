@@ -1,0 +1,132 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Agent dashboard scoped styles */
+.agent-theme .wrapper {
+  display: flex;
+}
+.agent-theme .sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 260px;
+  background: #ffffff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  z-index: 1030;
+}
+.agent-theme .sidebar .logo {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+.agent-theme .sidebar .logo .simple-text {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  color: #3c4858;
+}
+.agent-theme .sidebar .logo .logo-img { width: 36px; height: 36px; display: none; }
+.agent-theme .sidebar .sidebar-wrapper {
+  height: calc(100% - 64px);
+  overflow-y: auto;
+}
+.agent-theme .sidebar .sidebar-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.15;
+  background-image: linear-gradient(135deg, #eceff1 0%, #ffffff 100%);
+}
+.agent-theme .main-panel {
+  margin-left: 260px;
+  min-height: 100vh;
+  background: #f5f6fa;
+  padding-top: 70px;
+  overflow: auto;
+}
+.agent-theme .navbar {
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(180%) blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.agent-theme .navbar.fixed-top {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+}
+.agent-theme .navbar .navbar-brand {
+  font-weight: 600;
+}
+.agent-theme .container-fluid {
+  padding: 20px;
+  margin-top: 0;
+}
+.agent-theme .navbar .form-control {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 20px;
+}
+.agent-theme .navbar .btn.btn-white {
+  background: #fff;
+  border: 1px solid #ececec;
+}
+.agent-theme .card {
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+  background: #ffffff;
+}
+.agent-theme .card .card-header {
+  border-bottom: 0;
+  min-height: 80px;
+  padding-top: 24px;
+}
+.agent-theme .card-header-warning { color: #fff; }
+.agent-theme .card-header-success { color: #fff; }
+.agent-theme .card-header-danger { color: #fff; }
+.agent-theme .card-header-info { color: #fff; }
+.agent-theme .card-header-warning { background: linear-gradient(60deg, #ffa726, #fb8c00); }
+.agent-theme .card-header-success { background: linear-gradient(60deg, #66bb6a, #43a047); }
+.agent-theme .card-header-danger { background: linear-gradient(60deg, #ef5350, #e53935); }
+.agent-theme .card-header-info { background: linear-gradient(60deg, #26c6da, #00acc1); }
+.agent-theme .card.card-stats .card-header { position: relative; padding: 16px; }
+.agent-theme .card-header.card-header-icon .card-icon {
+  position: absolute;
+  top: -28px;
+  left: 16px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.agent-theme .card-category { color: #999; font-size: 0.9rem; margin: 0; }
+.agent-theme .card-title { margin: 4px 0 0; font-size: 1.25rem; font-weight: 500; }
+.agent-theme .card-footer { border-top: 1px solid #eee; background: transparent; }
+.agent-theme .stats { color: #999; font-size: 0.85rem; }
+.agent-theme .nav-tabs .nav-link { color: #555; }
+.agent-theme .nav-tabs .nav-link.active { color: #e91e63; border-bottom: 2px solid #e91e63; }
+.agent-theme .navbar-transparent { background: transparent !important; }
+.agent-theme .navbar .navbar-toggler .icon-bar { display: block; width: 22px; height: 2px; background: #333; margin: 4px 0; }
+.agent-theme .btn.btn-just-icon { padding: 6px; border-radius: 50%; width: 36px; height: 36px; }
+.agent-theme .material-icons { vertical-align: middle; }
+.agent-theme .ct-chart { height: 300px; }
+.agent-theme .nav .nav-link { color: #3c4858; }
+.agent-theme .nav .nav-link.active { color: #e91e63; }
+.agent-theme .card-header-warning .card-icon i { color: #fb8c00; font-size: 36px; }
+.agent-theme .card-header-success .card-icon i { color: #43a047; font-size: 36px; }
+.agent-theme .card-header-danger .card-icon i { color: #e53935; font-size: 36px; }
+.agent-theme .card-header-info .card-icon i { color: #00acc1; font-size: 36px; }
+.agent-theme .main-content { background: transparent; }
+.agent-theme .modal { display: none; }

@@ -1,0 +1,101 @@
+.advertisement-banner-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, #e0f7fa, #e8f5e9); /* Light blue to light green gradient */
+    margin: 20px auto;
+    padding: 40px 20px;
+    border-radius: 10px;
+    max-width: 1200px; /* Adjust as needed */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 40px;
+}
+
+.advertisement-banner-3 .banner-content {
+    flex: 1;
+    text-align: left;
+}
+
+.advertisement-banner-3 .banner-content h2 {
+    font-size: 2.0em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.advertisement-banner-3 .banner-content p {
+    font-size: 1.2em;
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.advertisement-banner-3 .banner-content .btn-post-property {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.advertisement-banner-3 .banner-content .btn-post-property:hover {
+    background-color: #0056b3;
+}
+
+.advertisement-banner-3 .banner-content .whatsapp-link {
+    color: #28a745;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.advertisement-banner-3 .banner-content .whatsapp-link i {
+    font-size: 1.2em;
+}
+
+.advertisement-banner-3 .banner-image {
+    flex: 1;
+    text-align: right;
+}
+
+.advertisement-banner-3 .banner-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+.main-heading {
+    text-align: left;
+    font-size: 2.5rem;
+    margin-top: 2rem;
+    color: #27364B;
+    margin-left: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .advertisement-banner-3 {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 15px;
+    }
+
+    .advertisement-banner-3 .banner-content {
+        text-align: center;
+    }
+
+    .advertisement-banner-3 .banner-content h2 {
+        font-size: 2em;
+    }
+
+    .advertisement-banner-3 .banner-content p {
+        font-size: 1em;
+    }
+
+    .advertisement-banner-3 .banner-image {
+        margin-top: 20px;
+    }
+}

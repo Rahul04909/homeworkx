@@ -1,0 +1,4 @@
+/* Prevent content from being overlapped by the fixed header */
+.main {
+  padding-top: 80px;
+}
