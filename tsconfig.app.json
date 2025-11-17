@@ -10,6 +10,10 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "src/**/*.spec.ts"
+    "src/**/*.spec.ts",
+    "src/app/owner/test.ts",
+    "src/app/owner/main.ts",
+    "src/app/owner/polyfills.ts",
+    "src/app/owner/app/app.component.ts"
   ]
 }

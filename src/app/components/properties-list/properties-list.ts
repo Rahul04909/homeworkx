@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './properties-list.html',
-  styleUrl: './properties-list.css',
+  styleUrls: ['./properties-list.css'],
 })
 export class PropertiesList {
 

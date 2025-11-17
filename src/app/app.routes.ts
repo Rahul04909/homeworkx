@@ -11,4 +11,14 @@ export const routes: Routes = [
     path: 'agent',
     loadChildren: () => import('./agent/app/app.routes').then(m => m.routes)
   }
+  ,
+  {
+    path: 'owner',
+    loadChildren: () => import('./owner/app/app.routes').then(m => m.routes)
+  }
+  ,
+  {
+    path: 'user',
+    loadChildren: () => import('./user/app/app.routes').then(m => m.routes)
+  }
 ];

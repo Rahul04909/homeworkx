@@ -34,13 +34,28 @@
                 "glob": "**/*",
                 "input": "src/app/boss/assets",
                 "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/agent/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/owner/assets",
+                "output": "assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/app/user/assets",
+                "output": "assets"
               }
             ],
             "styles": [
               "src/styles.css",
               "src/app/boss/scss/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/chartist/dist/chartist.min.css"
+              "node_modules/chartist/dist/index.css"
             ]
           },
           "configurations": {
@@ -53,8 +68,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "128kB",
+                  "maximumError": "512kB"
                 }
               ],
               "outputHashing": "all"
@@ -100,7 +115,7 @@
               "src/styles.css",
               "src/app/boss/scss/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/chartist/dist/chartist.min.css"
+              "node_modules/chartist/dist/index.css"
             ]
           }
         }
