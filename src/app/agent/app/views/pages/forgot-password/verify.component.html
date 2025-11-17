@@ -1,0 +1,43 @@
+<div class="login-page min-vh-100 d-flex align-items-center">
+  <c-container breakpoint="lg">
+    <c-row class="justify-content-center">
+      <c-col lg="11" xl="10">
+        <c-card-group class="auth-group">
+          <c-card class="hero-panel border-0">
+            <c-card-body class="p-4 p-md-5">
+              <img class="brand-logo" src="/assets/images/logo.png" alt="Homeworkx" />
+              <div #lottieContainer class="lottie-box"></div>
+              <div class="hero-copy">
+                <h2 class="hero-title">Verify OTP</h2>
+                <p class="hero-sub">Enter the code sent to your email or mobile</p>
+              </div>
+            </c-card-body>
+          </c-card>
+
+          <c-card class="form-panel p-4 border-0">
+            <c-card-body>
+              <form cForm>
+                <h1 class="mb-1">Enter OTP</h1>
+                <p class="text-body-secondary mb-4">Check your inbox or SMS for the code</p>
+
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input autoComplete="one-time-code" cFormControl placeholder="6-digit OTP" />
+                </c-input-group>
+
+                <button type="button" cButton color="primary" class="w-100 mb-3" routerLink="/agent/forgot-password/reset">Verify OTP</button>
+
+                <div class="text-center mt-4 small">
+                  <span class="text-body-secondary">Didn't receive the code?</span>
+                  <a routerLink="/agent/forgot-password" class="ms-1">Resend</a>
+                </div>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

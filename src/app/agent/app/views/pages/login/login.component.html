@@ -8,8 +8,8 @@
               <img class="brand-logo" src="/assets/images/logo.png" alt="Homeworkx" />
               <div #lottieContainer class="lottie-box"></div>
               <div class="hero-copy">
-                <h2 class="hero-title">Welcome to Admin</h2>
-                <p class="hero-sub">Manage everything with speed and clarity</p>
+                <h2 class="hero-title">Welcome, Agent</h2>
+                <p class="hero-sub">Manage listings and clients with ease</p>
               </div>
             </c-card-body>
           </c-card>
@@ -17,7 +17,7 @@
           <c-card class="form-panel p-4 border-0">
             <c-card-body>
               <form cForm>
-                <h1 class="mb-1">Admin Login</h1>
+                <h1 class="mb-1">Agent Login</h1>
                 <p class="text-body-secondary mb-4">Sign in to continue</p>
 
                 <c-input-group class="mb-3">
@@ -47,7 +47,7 @@
                     <input class="form-check-input me-2" type="checkbox" />
                     Remember me
                   </label>
-                  <a class="text-decoration-none" (click)="forgotPassword()">Forgot password?</a>
+                  <a class="text-decoration-none" routerLink="/agent/forgot-password">Forgot password?</a>
                 </div>
 
                 <button type="button" cButton color="primary" class="w-100 mb-3" (click)="login()">Login</button>
@@ -67,7 +67,7 @@
 
                 <div class="text-center mt-4 small">
                   <span class="text-body-secondary">New here?</span>
-                  <a routerLink="/admin/register" class="ms-1">Create an account</a>
+                  <a routerLink="/agent/register" class="ms-1">Create an account</a>
                 </div>
               </form>
             </c-card-body>

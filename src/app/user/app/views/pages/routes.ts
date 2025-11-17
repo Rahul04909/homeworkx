@@ -29,4 +29,30 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   }
+  ,
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./forgot-password/start.component').then(m => m.ForgotStartComponent),
+    data: { title: 'Forgot Password' }
+  },
+  {
+    path: 'forgot-password/verify',
+    loadComponent: () => import('./forgot-password/verify.component').then(m => m.ForgotVerifyComponent),
+    data: { title: 'Verify OTP' }
+  },
+  {
+    path: 'forgot-password/reset',
+    loadComponent: () => import('./forgot-password/reset.component').then(m => m.ForgotResetComponent),
+    data: { title: 'Reset Password' }
+  },
+  {
+    path: 'forgot-password/success',
+    loadComponent: () => import('./forgot-password/success.component').then(m => m.ForgotSuccessComponent),
+    data: { title: 'Success' }
+  },
+  {
+    path: 'forget-password',
+    loadComponent: () => import('./forgot-password/start.component').then(m => m.ForgotStartComponent),
+    data: { title: 'Forgot Password' }
+  }
 ];

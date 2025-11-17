@@ -83,5 +83,25 @@ export const routes: Routes = [
       title: 'Register Page'
     }
   },
+  {
+    path: 'forgot-password',
+    loadComponent: () => import('./views/pages/forgot-password/start.component').then(m => m.ForgotStartComponent),
+    data: { title: 'Forgot Password' }
+  },
+  {
+    path: 'forgot-password/verify',
+    loadComponent: () => import('./views/pages/forgot-password/verify.component').then(m => m.ForgotVerifyComponent),
+    data: { title: 'Verify OTP' }
+  },
+  {
+    path: 'forgot-password/reset',
+    loadComponent: () => import('./views/pages/forgot-password/reset.component').then(m => m.ForgotResetComponent),
+    data: { title: 'Reset Password' }
+  },
+  {
+    path: 'forgot-password/success',
+    loadComponent: () => import('./views/pages/forgot-password/success.component').then(m => m.ForgotSuccessComponent),
+    data: { title: 'Success' }
+  },
   { path: '**', redirectTo: 'dashboard' }
 ];

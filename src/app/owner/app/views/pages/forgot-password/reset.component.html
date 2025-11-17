@@ -1,0 +1,51 @@
+<div class="login-page min-vh-100 d-flex align-items-center">
+  <c-container breakpoint="lg">
+    <c-row class="justify-content-center">
+      <c-col lg="11" xl="10">
+        <c-card-group class="auth-group">
+          <c-card class="hero-panel border-0">
+            <c-card-body class="p-4 p-md-5">
+              <img class="brand-logo" src="/assets/images/logo.png" alt="Homeworkx" />
+              <div #lottieContainer class="lottie-box"></div>
+              <div class="hero-copy">
+                <h2 class="hero-title">Create new password</h2>
+                <p class="hero-sub">Choose a strong password to secure your account</p>
+              </div>
+            </c-card-body>
+          </c-card>
+
+          <c-card class="form-panel p-4 border-0">
+            <c-card-body>
+              <form cForm>
+                <h1 class="mb-1">Reset Password</h1>
+                <p class="text-body-secondary mb-4">Enter and confirm your new password</p>
+
+                <c-input-group class="mb-2">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input [type]="showPassword ? 'text' : 'password'" autoComplete="new-password" cFormControl placeholder="New password" />
+                  <button type="button" cButton color="light" class="input-action" (click)="togglePassword()">
+                    <i [class]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                  </button>
+                </c-input-group>
+
+                <c-input-group class="mb-3">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input [type]="showConfirm ? 'text' : 'password'" autoComplete="new-password" cFormControl placeholder="Confirm new password" />
+                  <button type="button" cButton color="light" class="input-action" (click)="toggleConfirm()">
+                    <i [class]="showConfirm ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
+                  </button>
+                </c-input-group>
+
+                <button type="button" cButton color="primary" class="w-100 mb-3" routerLink="/owner/forgot-password/success">Update Password</button>
+              </form>
+            </c-card-body>
+          </c-card>
+        </c-card-group>
+      </c-col>
+    </c-row>
+  </c-container>
+</div>

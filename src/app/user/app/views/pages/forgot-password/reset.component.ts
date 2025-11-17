@@ -15,24 +15,24 @@ import {
 } from '@coreui/angular';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: 'app-forgot-reset',
+  templateUrl: './reset.component.html',
+  styleUrls: ['./reset.component.scss'],
   imports: [ContainerComponent, RowComponent, ColComponent, CardGroupComponent, CardComponent, CardBodyComponent, FormDirective, InputGroupComponent, InputGroupTextDirective, IconDirective, FormControlDirective, ButtonDirective]
 })
-export class LoginComponent implements AfterViewInit, OnDestroy {
+export class ForgotResetComponent implements AfterViewInit, OnDestroy {
   @ViewChild('lottieContainer', { static: false }) lottieContainer?: ElementRef<HTMLDivElement>;
   showPassword = false;
+  showConfirm = false;
   private animation?: any;
 
   togglePassword() {
     this.showPassword = !this.showPassword;
   }
 
-  login() {}
-  forgotPassword() {}
-  loginWithGoogle() {}
-  loginWithFacebook() {}
+  toggleConfirm() {
+    this.showConfirm = !this.showConfirm;
+  }
 
   async ngAfterViewInit() {
     if (!this.lottieContainer) return;
@@ -43,7 +43,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/assets/lottie/agent-login.json'
+      path: '/assets/lottie/forget-password.json'
     });
   }
 

@@ -43,7 +43,7 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/assets/lottie/admin-login.json'
+      path: '/assets/lottie/user-login.json'
     });
   }
 
