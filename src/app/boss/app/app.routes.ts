@@ -18,6 +18,62 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
       {
+        path: 'nigerian-states',
+        loadComponent: () => import('../views/nigerian-states/nigerian-states.component').then(m => m.NigerianStatesComponent),
+        data: {
+          title: 'Nigerian States'
+        }
+      },
+      {
+        path: 'nigerian-cities',
+        loadComponent: () => import('../views/nigerian-cities/nigerian-cities.component').then(m => m.NigerianCitiesComponent),
+        data: {
+          title: 'Nigerian Cities'
+        }
+      },
+      {
+        path: 'country-master',
+        loadComponent: () => import('../views/country-master/country-master.component').then(m => m.CountryMasterComponent),
+        data: {
+          title: 'Country Master'
+        }
+      },
+      {
+        path: 'all-customers',
+        loadComponent: () => import('../views/all-customers/all-customers.component').then(m => m.AllCustomersComponent),
+        data: {
+          title: 'All Customers'
+        }
+      },
+      {
+        path: 'closure-requests',
+        loadComponent: () => import('../views/closure-request/closure-request.component').then(m => m.ClosureRequestComponent),
+        data: {
+          title: 'Closure Requests'
+        }
+      },
+      {
+        path: 'closed-accounts',
+        loadComponent: () => import('../views/closed-accounts/closed-accounts.component').then(m => m.ClosedAccountsComponent),
+        data: {
+          title: 'Closed Accounts'
+        }
+      },
+      {
+        path: 'property-actions',
+        loadComponent: () => import('../views/property-actions/property-actions.component').then(m => m.PropertyActionsComponent),
+        data: {
+          title: 'Property Actions'
+        }
+      },
+      {
+        path: 'property-types',
+        loadComponent: () => import('../views/property-types/property-types.component').then(m => m.PropertyTypesComponent),
+        data: {
+          title: 'Property Types'
+        }
+      },
+      {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
       },

@@ -1,0 +1,183 @@
+<c-row>
+  <c-col md="12">
+    <c-card class="shadow-sm">
+      <c-card-header>
+        <div class="d-flex justify-content-between align-items-center">
+          <strong>Post New Property</strong>
+        </div>
+      </c-card-header>
+      <c-card-body>
+        <form cForm [formGroup]="form" (ngSubmit)="submit()">
+          <c-row class="g-3">
+            <c-col md="6">
+              <label class="form-label">What do you want to?</label>
+              <select cSelect formControlName="intent" (change)="onIntentChange($any($event.target).value)">
+                <option value="">Select</option>
+                <option *ngFor="let i of intents" [value]="i">{{ i }}</option>
+              </select>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">Property Type</label>
+              <select cSelect formControlName="propertyType">
+                <option value="">Select Type</option>
+                <option *ngFor="let p of propertyTypes" [value]="p">{{ p }}</option>
+              </select>
+            </c-col>
+
+            <c-col md="6">
+              <label class="form-label">Title</label>
+              <input cFormControl formControlName="title" placeholder="Listing title" />
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">Area (sqft)</label>
+              <input cFormControl formControlName="area" placeholder="Area" />
+            </c-col>
+
+            <c-col md="12">
+              <label class="form-label">Description</label>
+              <textarea cFormControl formControlName="description" rows="4" placeholder="Describe the property"></textarea>
+            </c-col>
+
+            <c-col md="6">
+              <label class="form-label">State</label>
+              <select cSelect formControlName="state">
+                <option value="">Select State</option>
+                <option *ngFor="let s of states" [value]="s">{{ s }}</option>
+              </select>
+            </c-col>
+            <c-col md="6">
+              <label class="form-label">City</label>
+              <select cSelect formControlName="city">
+                <option value="">Select City</option>
+                <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+              </select>
+            </c-col>
+            <c-col md="8">
+              <label class="form-label">Address</label>
+              <input cFormControl formControlName="address" placeholder="Street, neighborhood" />
+            </c-col>
+            <c-col md="4">
+              <label class="form-label">Zip</label>
+              <input cFormControl formControlName="zip" placeholder="Postal code" />
+            </c-col>
+
+            <c-col md="4">
+              <label class="form-label">Bedrooms</label>
+              <input cFormControl formControlName="bedrooms" placeholder="Bedrooms" />
+            </c-col>
+            <c-col md="4">
+              <label class="form-label">Bathrooms</label>
+              <input cFormControl formControlName="bathrooms" placeholder="Bathrooms" />
+            </c-col>
+            <c-col md="4">
+              <label class="form-label">Year Built</label>
+              <input cFormControl formControlName="yearBuilt" placeholder="YYYY" />
+            </c-col>
+
+            <ng-container *ngIf="form.value.intent === 'Sell'">
+              <c-col md="6">
+                <label class="form-label">Asking Price</label>
+                <c-input-group>
+                  <span cInputGroupText>₦</span>
+                  <input cFormControl formControlName="price" placeholder="Amount" />
+                </c-input-group>
+              </c-col>
+              <c-col md="6" class="d-flex align-items-end">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" formControlName="negotiable" id="negotiableChk" />
+                  <label class="form-check-label" for="negotiableChk">Negotiable</label>
+                </div>
+              </c-col>
+            </ng-container>
+
+            <ng-container *ngIf="form.value.intent === 'Rent out' || form.value.intent === 'Lease'">
+              <c-col md="4">
+                <label class="form-label">Monthly Rent / Lease</label>
+                <c-input-group>
+                  <span cInputGroupText>₦</span>
+                  <input cFormControl formControlName="price" placeholder="Amount" />
+                </c-input-group>
+              </c-col>
+              <c-col md="4">
+                <label class="form-label">Deposit</label>
+                <c-input-group>
+                  <span cInputGroupText>₦</span>
+                  <input cFormControl formControlName="deposit" placeholder="Deposit" />
+                </c-input-group>
+              </c-col>
+              <c-col md="4">
+                <label class="form-label">Lease Term (months)</label>
+                <input cFormControl formControlName="leaseTerm" placeholder="Months" />
+              </c-col>
+            </ng-container>
+
+            <ng-container *ngIf="form.value.intent === 'Mortgage'">
+              <c-col md="3">
+                <label class="form-label">Property Value</label>
+                <c-input-group>
+                  <span cInputGroupText>₦</span>
+                  <input cFormControl formControlName="value" placeholder="Value" />
+                </c-input-group>
+              </c-col>
+              <c-col md="3">
+                <label class="form-label">Down Payment</label>
+                <c-input-group>
+                  <span cInputGroupText>₦</span>
+                  <input cFormControl formControlName="downPayment" placeholder="Down payment" />
+                </c-input-group>
+              </c-col>
+              <c-col md="3">
+                <label class="form-label">Interest Rate (%)</label>
+                <input cFormControl formControlName="interestRate" placeholder="Rate" />
+              </c-col>
+              <c-col md="3">
+                <label class="form-label">Tenure (years)</label>
+                <input cFormControl formControlName="tenureYears" placeholder="Years" />
+              </c-col>
+            </ng-container>
+
+            <ng-container *ngIf="form.value.intent === 'Donate'">
+              <c-col md="6">
+                <label class="form-label">Preferred Recipient</label>
+                <input cFormControl formControlName="recipient" placeholder="Organization / person" />
+              </c-col>
+              <c-col md="6">
+                <label class="form-label">Availability Date</label>
+                <input cFormControl type="date" formControlName="availabilityDate" />
+              </c-col>
+              <c-col md="12">
+                <label class="form-label">Conditions</label>
+                <textarea cFormControl formControlName="conditions" rows="3" placeholder="Terms and conditions"></textarea>
+              </c-col>
+            </ng-container>
+
+            <ng-container *ngIf="form.value.intent === 'Profit Sharing Venture'">
+              <c-col md="4">
+                <label class="form-label">Share Percentage (%)</label>
+                <input cFormControl formControlName="sharePercent" placeholder="Percentage" />
+              </c-col>
+              <c-col md="4">
+                <label class="form-label">Minimum Investment</label>
+                <c-input-group>
+                  <span cInputGroupText>₦</span>
+                  <input cFormControl formControlName="minInvestment" placeholder="Amount" />
+                </c-input-group>
+              </c-col>
+              <c-col md="12">
+                <label class="form-label">Terms</label>
+                <textarea cFormControl formControlName="terms" rows="3" placeholder="Agreement terms"></textarea>
+              </c-col>
+            </ng-container>
+
+            <c-col md="12">
+              <div class="d-flex justify-content-end">
+                <button cButton color="primary" type="submit" [disabled]="form.invalid">Next</button>
+              </div>
+            </c-col>
+          </c-row>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+

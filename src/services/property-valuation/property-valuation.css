@@ -1,0 +1,29 @@
+.service{background:#ffffff;padding-top:90px}
+.service-hero{position:relative;height:240px;border-bottom:1px solid rgba(39,54,75,.12);background:linear-gradient(180deg,rgba(39,54,75,.08),rgba(39,54,75,.02))}
+.service-hero{background-size:cover;background-position:center}
+.service-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(39,54,75,.35),rgba(39,54,75,.08))}
+.valuation-hero{background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=1600&auto=format&fit=crop')}
+/* Enquiry */
+.enquiry-card{display:grid;grid-template-columns:1fr .8fr;gap:16px;background:#fff;border:1px solid rgba(39,54,75,.12);box-shadow:0 10px 24px rgba(39,54,75,.08);border-radius:16px;padding:18px;margin-top:20px}
+.enquiry-form{display:flex;flex-direction:column;gap:12px}
+.form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-weight:700;color:#27364B}
+.form-field input,.form-field textarea{padding:10px 12px;border:1px solid rgba(39,54,75,.18);border-radius:10px}
+.form-actions{display:flex;justify-content:flex-end}
+.enquiry-image{border-radius:12px;background-image:url('https://images.unsplash.com/photo-1594221332421-043ca4bef4c3?q=80&w=1600&auto=format&fit=crop');background-size:cover;background-position:center}
+.hero-content{max-width:960px;margin:0 auto;padding:22px;color:#27364B}
+.hero-content h1{font-size:2rem;font-weight:800;margin:0}
+.hero-content p{color:#555;margin-top:6px}
+.hero-actions{display:flex;gap:10px;margin-top:12px}
+.btn{padding:10px 14px;border-radius:10px;font-weight:700;text-decoration:none;display:inline-block}
+.btn-primary{background:#FFA500;color:#1f2a38}
+.service-container{max-width:1000px;margin:0 auto;padding:24px}
+.features-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.feature-card{background:#fff;border:1px solid rgba(39,54,75,.12);box-shadow:0 10px 24px rgba(39,54,75,.08);border-radius:16px;padding:16px;color:#27364B}
+.feature-card h3{margin:0 0 6px}
+.feature-card p{color:#444;margin:0}
+.cta-banner{background:linear-gradient(180deg,#fff,rgba(255,165,0,.06));border:1px solid rgba(255,165,0,.35);border-radius:16px;padding:16px;margin:16px 0;color:#27364B;display:flex;align-items:center;justify-content:space-between}
+.cta-banner h2{margin:0;font-size:1.4rem}
+@media (max-width:992px){.service-container{padding:18px}.features-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.service{padding-top:76px}.service-hero{height:200px}.features-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column;align-items:flex-start}.enquiry-card{grid-template-columns:1fr}}

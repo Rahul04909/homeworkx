@@ -1,0 +1,42 @@
+<app-header></app-header>
+<section class="faqs">
+  <div class="faqs-container">
+    <div class="ad-banner">
+      <div class="ad-content">
+        <h2>Verified Listings, Secure Deals</h2>
+        <p>Discover properties with confidence. Transparent pricing and trusted agents.</p>
+        <a href="/" class="btn btn-primary">Start Browsing</a>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let item of faqs; let i = index" [class.open]="openIndex === i">
+        <button class="faq-q" (click)="toggle(i)" [attr.aria-expanded]="openIndex === i">
+          <span>{{ item.q }}</span>
+          <span class="chev" [class.open]="openIndex === i"></span>
+        </button>
+        <div class="faq-a" [style.maxHeight]="openIndex === i ? '500px' : '0px'">
+          <p>{{ item.a }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-grid">
+      <div class="ad-tile">
+        <div class="ad-tile-content">
+          <h3>List Your Property</h3>
+          <p>Reach verified tenants and buyers faster.</p>
+          <a href="/" class="btn btn-primary">List Now</a>
+        </div>
+      </div>
+      <div class="ad-tile">
+        <div class="ad-tile-content">
+          <h3>Need Renovation?</h3>
+          <p>Connect with vetted service providers.</p>
+          <a href="/" class="btn btn-primary">Get Help</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

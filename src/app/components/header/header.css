@@ -200,6 +200,14 @@ ul {
     .search-row {
         flex-direction: column;
     }
+
+/* Dropdown on hover */
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+.dropdown > .dropdown-toggle:active {
+  pointer-events: none;
+}
     
     .filter-row {
         flex-direction: column;

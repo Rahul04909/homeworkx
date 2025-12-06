@@ -1,0 +1,75 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero documentation-hero">
+    <div class="hero-content">
+      <h1>Documentation</h1>
+      <p>Legal and regulatory paperwork for secure, transparent property transactions.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Documentation%20Request&body=I%20need%20assistance%20with%20property%20documentation">Start Now</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Contracts</h3>
+        <p>Drafting and reviewing purchase, lease, and management agreements.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Ownership Verification</h3>
+        <p>Title, deed, and certificate checks for authenticity.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Compliance</h3>
+        <p>Processes aligned with Nigerian property laws and guidelines.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Dispute‑Free Deals</h3>
+        <p>Transparent records and proper filings to prevent conflicts.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Get end‑to‑end documentation handled by experts</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Documentation%20Consultation">Request Consultation</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Documentation Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="dtype">Docs Type</label>
+              <input id="dtype" #dtype type="text" placeholder="Contracts, Ownership, Compliance">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="addr">Property Address</label>
+            <input id="addr" #addr type="text" placeholder="Address">
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, dtype.value, addr.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

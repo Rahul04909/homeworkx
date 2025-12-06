@@ -16,10 +16,25 @@
         <a cNavLink routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/users" routerLinkActive="active">Users</a>
+        <a cNavLink routerLink="/buy" routerLinkActive="active">Buy</a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/settings" routerLinkActive="active">Settings</a>
+        <a cNavLink routerLink="/rent" routerLinkActive="active">Rent</a>
+      </c-nav-item>
+      <c-nav-item>
+        <a cNavLink routerLink="/lease" routerLinkActive="active">Lease</a>
+      </c-nav-item>
+      <c-nav-item>
+        <a cNavLink routerLink="/project" routerLinkActive="active">Project</a>
+      </c-nav-item>
+      <c-nav-item>
+          <c-dropdown #toolsDropdown variant="nav-item" (mouseenter)="openToolsDropdown()" (mouseleave)="closeToolsDropdown()" [visible]="isToolsDropdownOpen">
+          <button cDropdownToggle class="nav-link">Tools</button>
+          <ul cDropdownMenu>
+            <li><a cDropdownItem routerLink="/emi-loan-calculator">EMI Loan Calculator</a></li>
+            <li><a cDropdownItem routerLink="/roi-calculator">ROI Calculator</a></li>
+          </ul>
+        </c-dropdown>
       </c-nav-item>
     </c-header-nav>
 

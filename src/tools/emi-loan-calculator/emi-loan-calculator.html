@@ -1,0 +1,60 @@
+<app-header></app-header>
+<section class="tools">
+  <div class="tools-header">
+    <h1>EMI Loan Calculator</h1>
+    <p>Estimate your monthly payment, total interest, and total cost.</p>
+  </div>
+  <div class="tools-container">
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h2>Inputs</h2>
+        <form class="calc-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="principal">Loan Amount (₦)</label>
+              <input id="principal" #principal type="number" min="0" placeholder="e.g., 10,000,000">
+            </div>
+            <div class="form-field">
+              <label for="rate">Interest Rate (% p.a.)</label>
+              <input id="rate" #rate type="number" min="0" step="0.01" placeholder="e.g., 12">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="years">Tenure (years)</label>
+              <input id="years" #years type="number" min="0" step="0.5" placeholder="e.g., 20">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="calculate(principal.value, rate.value, years.value)">Calculate</button>
+          </div>
+        </form>
+      </div>
+      <div class="result-card" *ngIf="result as r">
+        <h2>Results</h2>
+        <div class="result-grid">
+          <div class="stat">
+            <div class="stat-label">Monthly EMI</div>
+            <div class="stat-value">{{ r.emiCompact }}</div>
+            <div class="stat-sub">{{ r.emi }}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Total Interest</div>
+            <div class="stat-value">{{ r.totalInterestCompact }}</div>
+            <div class="stat-sub">{{ r.totalInterest }}</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label">Total Payment</div>
+            <div class="stat-value">{{ r.totalPaymentCompact }}</div>
+            <div class="stat-sub">{{ r.totalPayment }}</div>
+          </div>
+        </div>
+        <div class="meta">
+          <span>Months: {{ r.months }}</span>
+          <span>Monthly Rate: {{ r.monthlyRate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

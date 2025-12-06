@@ -1,0 +1,35 @@
+<div class="card">
+  <div class="card-header">
+    Nigerian States
+    <button class="btn btn-sm btn-primary float-end" (click)="addNewState()">Add New State</button>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>State Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let state of states; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ state.name }}</td>
+          <td>
+            <span class="badge" [class.bg-success]="state.enabled" [class.bg-danger]="!state.enabled">
+              {{ state.enabled ? 'Enabled' : 'Disabled' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-info me-2" (click)="editState(state)">Edit</button>
+            <button class="btn btn-sm" [class.btn-warning]="state.enabled" [class.btn-success]="!state.enabled" (click)="toggleStateStatus(state)">
+              {{ state.enabled ? 'Disable' : 'Enable' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

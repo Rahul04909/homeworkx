@@ -1,0 +1,70 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero verification-hero">
+    <div class="hero-content">
+      <h1>Verification</h1>
+      <p>Thorough inspection of properties for accuracy, safety, and documentation.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Property%20Verification%20Request">Request Verification</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>On‑Site Checks</h3>
+        <p>Physical inspection of structure and utilities.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Documents Review</h3>
+        <p>Validates titles, permits, and ownership records.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Safety Standards</h3>
+        <p>Ensures compliance with local regulations.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Transparency</h3>
+        <p>Verified listings to eliminate fraud and misrepresentation.</p>
+      </div>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Verification Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="docs">Documents</label>
+              <input id="docs" #docs type="text" placeholder="Title, deed, permits">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="addr">Property Address</label>
+            <input id="addr" #addr type="text" placeholder="Address">
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, addr.value, docs.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

@@ -1,0 +1,75 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero interior-hero">
+    <div class="hero-content">
+      <h1>Interior Design & Home Upgrades</h1>
+      <p>Professional design, functional improvements, and verified experts for property efficiency.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Interior%20Design%20Request">Get a Design Plan</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Décor & Layout</h3>
+        <p>Modern styling, furniture placement, and space optimization.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Power Solutions</h3>
+        <p>Inverter installations and solar setups tailored to your needs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Security Systems</h3>
+        <p>CCTV, access control, and smart sensors for safety.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Office Fit‑outs</h3>
+        <p>Ergonomic furniture and lighting for productivity.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Transform your space and improve property readiness</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Interior%20Upgrade%20Consultation">Book Consultation</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Interior & Upgrades Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="upgrade">Upgrade Type</label>
+              <input id="upgrade" #upgrade type="text" placeholder="Décor, Solar, Security">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="details">Details</label>
+            <textarea id="details" #details rows="4" placeholder="Describe your space and goals"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, upgrade.value, details.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

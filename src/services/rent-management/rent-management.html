@@ -1,0 +1,80 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero rent-hero">
+    <div class="hero-content">
+      <h1>Rent Management</h1>
+      <p>Organized rental agreements, payment tracking, and automated reminders for landlords and tenants.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Rent%20Management%20Setup">Set Up Rent</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Flexible Payments</h3>
+        <p>Monthly, quarterly, biannual, or yearly options.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Automated Reminders</h3>
+        <p>Keep everyone aligned with timely notifications.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Clear Records</h3>
+        <p>Auditable logs of invoices and receipts.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Tenant Portal</h3>
+        <p>Easy access to agreements, balances, and updates.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Simplify rent workflows and improve collections</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Rent%20Management%20Consultation">Request Demo</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Rent Management Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="cycle">Payment Cycle</label>
+              <select id="cycle" #cycle class="input">
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Biannual</option>
+                <option>Yearly</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="details">Details</label>
+            <textarea id="details" #details rows="4" placeholder="Portfolio and requirements"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, cycle.value, details.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

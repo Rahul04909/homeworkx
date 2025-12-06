@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    Nigerian Cities
+    <button class="btn btn-sm btn-primary float-end" (click)="addNewCity()">Add New City</button>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>City Name</th>
+          <th>State</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let city of cities; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ city.name }}</td>
+          <td>{{ city.state }}</td>
+          <td>
+            <span class="badge" [class.bg-success]="city.enabled" [class.bg-danger]="!city.enabled">
+              {{ city.enabled ? 'Enabled' : 'Disabled' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-info me-2" (click)="editCity(city)">Edit</button>
+            <button class="btn btn-sm" [class.btn-warning]="city.enabled" [class.btn-success]="!city.enabled" (click)="toggleCityStatus(city)">
+              {{ city.enabled ? 'Disable' : 'Enable' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

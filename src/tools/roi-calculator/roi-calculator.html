@@ -1,0 +1,63 @@
+<app-header></app-header>
+<section class="tools">
+  <div class="tools-header">
+    <h1>ROI Calculator</h1>
+    <p>Estimate gross yield and net ROI from rental income and expenses.</p>
+  </div>
+  <div class="tools-container">
+    <div class="calc-grid">
+      <div class="calc-card">
+        <h2>Inputs</h2>
+        <form class="calc-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="invest">Investment (₦)</label>
+              <input id="invest" #invest type="number" min="0" placeholder="e.g., 50,000,000">
+            </div>
+            <div class="form-field">
+              <label for="rent">Monthly Rent (₦)</label>
+              <input id="rent" #rent type="number" min="0" placeholder="e.g., 300,000">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="exp">Monthly Expenses (₦)</label>
+              <input id="exp" #exp type="number" min="0" placeholder="e.g., 50,000">
+            </div>
+            <div class="form-field">
+              <label for="occ">Occupancy (%)</label>
+              <input id="occ" #occ type="number" min="0" max="100" step="1" placeholder="e.g., 95">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="calculate(invest.value, rent.value, exp.value, occ.value)">Calculate</button>
+          </div>
+        </form>
+      </div>
+      <div class="result-card" *ngIf="result as r">
+        <h2>Results</h2>
+        <div class="result-grid">
+          <div class="stat">
+            <div class="stat-label">Gross Yield</div>
+            <div class="stat-value">{{ r.grossYield }}</div>
+          </div>
+          <div class="stat" [class.negative]="r.netAnnualNeg">
+            <div class="stat-label">Net Annual Income</div>
+            <div class="stat-value">{{ r.netAnnualCompact }}</div>
+            <div class="stat-sub">{{ r.netAnnual }}</div>
+          </div>
+          <div class="stat" [class.negative]="r.netMonthlyNeg">
+            <div class="stat-label">Net Monthly Income</div>
+            <div class="stat-value">{{ r.netMonthlyCompact }}</div>
+            <div class="stat-sub">{{ r.netMonthly }}</div>
+          </div>
+          <div class="stat" [class.negative]="r.roiNeg">
+            <div class="stat-label">Net ROI</div>
+            <div class="stat-value">{{ r.roiPercent }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

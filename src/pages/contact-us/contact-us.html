@@ -1,0 +1,93 @@
+<app-header></app-header>
+<section class="contact">
+  <header class="contact-hero">
+    <div class="contact-hero-content">
+      <h1>Contact & Customer Support</h1>
+      <p>We’re here to help with property questions, services, and support.</p>
+    </div>
+  </header>
+
+  <div class="contact-container">
+    <div class="support-cards">
+      <div class="support-card">
+        <h3>Person of Contact (POC)</h3>
+        <p>Our support team ensures users have a reliable point of contact for all inquiries.</p>
+        <ul class="contact-list">
+          <li><strong>Email:</strong> <a href="mailto:homeworxinc001@gmail.com">homeworxinc001@gmail.com</a></li>
+          <li><strong>Phone:</strong> <a href="tel:+2348106972330">+234 810 697 2330</a></li>
+          <strong>Our Social Platforms</strong>
+            <div class="social-icons">
+              <a class="social-icon instagram" href="https://instagram.com/homeworxinc" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm5.5-2.75a1.25 1.25 0 110 2.5 1.25 1.25 0 010-2.5z"></path></svg>
+              </a>
+              <a class="social-icon facebook" href="https://facebook.com/homeworxinc" target="_blank" rel="noopener" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 9H16l.5-3h-3a3.5 3.5 0 00-3.5 3.5V12H7v3h3v7h3.5v-7h2.5l.5-3h-3v-1.5a1.5 1.5 0 011.5-1.5z"></path></svg>
+              </a>
+              <a class="social-icon x" href="https://x.com/homeworxinc" target="_blank" rel="noopener" aria-label="X">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4l7.5 8.6L6.2 20H9l4.6-5.3L17.8 20H20l-7.4-8.5L17.6 4H15l-4.3 5-4-5H4z"></path></svg>
+              </a>
+              <a class="social-icon youtube" href="https://youtube.com/@homeworxinc" target="_blank" rel="noopener" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 7.5a3 3 0 00-2.1-2.1C19.3 5 12 5 12 5s-7.3 0-8.9.4A3 3 0 001 7.5C.6 9.1.6 12 .6 12s0 2.9.4 4.5a3 3 0 002.1 2.1C4.7 19 12 19 12 19s7.3 0 8.9-.4a3 3 0 002.1-2.1c.4-1.6.4-4.5.4-4.5s0-2.9-.4-4.5zM10 15V9l6 3-6 3z"></path></svg>
+              </a>
+            </div>
+        </ul>
+      </div>
+      <div class="support-card">
+        <h3>Support Methods</h3>
+        <ul class="contact-list">
+          <li><strong>Email Support:</strong> Detailed questions, document submissions, or complaints.</li>
+          <li><strong>Phone & WhatsApp:</strong> Quick responses for urgent inquiries.</li>
+          <li><strong>Social Media DMs:</strong> General inquiries or engagement.</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com">Email Us</a>
+          <a class="btn btn-primary" href="https://wa.me/2348106972330" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn btn-outline" href="tel:+2348106972330">Call Us</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-form-card">
+        <h2>Send Us a Message</h2>
+        <form class="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="subject">Subject</label>
+              <input id="subject" #subject type="text" placeholder="How can we help?">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="message">Message</label>
+            <textarea id="message" #message rows="5" placeholder="Tell us about your request"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, subject.value, message.value)">Send Email</button>
+          </div>
+        </form>
+      </div>
+      <div class="contact-map-card">
+        <h2>Visit Us</h2>
+        <p>Shop 24 & 34, Mutiu Are Block, Babajide Sanwo‑Olu Shopping Complex, Ketu, Lagos</p>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=Shop%2024%20%26%2034,%20Mutiu%20Are%20Block,%20Babajide%20Sanwo-Olu%20Shopping%20Complex,%20Ketu,%20Lagos&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

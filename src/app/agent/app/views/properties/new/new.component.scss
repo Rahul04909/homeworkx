@@ -1,0 +1,5 @@
+.form-check-input { margin-right: 8px; }
+.plan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.shadow-sm { box-shadow: 0 6px 20px rgba(0,0,0,0.06) !important; }
+textarea[cFormControl] { resize: vertical; }
+

@@ -8,6 +8,27 @@
     --scrollbar-border-radius: 5px;
   }
 
+  .c-sidebar-header {
+    padding-inline: 16px;
+  }
+  .c-sidebar-brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .c-sidebar-brand .sidebar-brand-full {
+    height: 44px;
+    width: auto;
+    margin: 8px auto;
+    display: block;
+  }
+  .c-sidebar-brand .sidebar-brand-narrow {
+    height: 36px;
+    width: auto;
+    margin: 8px auto;
+    display: block;
+  }
+
   .ng-scroll-content {
     display: flex;
     min-height: 100%;

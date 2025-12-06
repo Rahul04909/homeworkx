@@ -1,0 +1,76 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero loan-hero">
+    <div class="hero-content">
+      <h1>Easy Loans</h1>
+      <p>Quick, accessible financing for property purchases, renovations, and investments.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/emi-loan-calculator">EMI Calculator</a>
+        <a class="btn btn-outline" href="mailto:homeworxinc001@gmail.com?subject=Loan%20Inquiry&body=I%20would%20like%20to%20apply%20for%20a%20loan">Apply Now</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Fast Approval</h3>
+        <p>Secure properties quickly with streamlined evaluation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Flexible Repayment</h3>
+        <p>Plans that fit your budget and repayment preferences.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Purchase & Renovate</h3>
+        <p>Loans designed for buying new properties and upgrades.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Transparent Terms</h3>
+        <p>Clear documentation and fee structure for every loan.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Finance your next property with confidence</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Loan%20Callback&body=Please%20contact%20me%20about%20HomeWorkx%20Easy%20Loans">Request a Callback</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Loan Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="amount">Amount</label>
+              <input id="amount" #amount type="text" placeholder="₦ e.g. 5,000,000">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="purpose">Purpose</label>
+            <textarea id="purpose" #purpose rows="4" placeholder="Purchase, renovation, investment"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, amount.value, purpose.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

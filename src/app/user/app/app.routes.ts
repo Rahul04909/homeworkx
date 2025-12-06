@@ -18,6 +18,76 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
       {
+        path: 'buy',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Buy'
+        }
+      },
+      {
+        path: 'services/buy',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Buy'
+        }
+      },
+      {
+        path: 'rent',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Rent'
+        }
+      },
+      {
+        path: 'services/rent',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Rent'
+        }
+      },
+      {
+        path: 'lease',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Lease'
+        }
+      },
+      {
+        path: 'services/lease',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Lease'
+        }
+      },
+      {
+        path: 'project',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Project'
+        }
+      },
+      {
+        path: 'services/project',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'Project'
+        }
+      },
+      {
+        path: 'emi-loan-calculator',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'EMI Loan Calculator'
+        }
+      },
+      {
+        path: 'roi-calculator',
+        loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
+        data: {
+          title: 'ROI Calculator'
+        }
+      },
+      {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
       },

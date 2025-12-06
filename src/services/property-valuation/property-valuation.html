@@ -1,0 +1,75 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero valuation-hero">
+    <div class="hero-content">
+      <h1>Property Valuation</h1>
+      <p>Reliable valuations for residential and commercial assets to guide pricing and investments.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Valuation%20Request">Request Valuation</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Market Analysis</h3>
+        <p>Current trends and comparable sales in your area.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Asset Types</h3>
+        <p>Residential, commercial, and mixed‑use valuations.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Detailed Reports</h3>
+        <p>Clear documentation of value drivers and assumptions.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Decision Support</h3>
+        <p>Insights for buying, selling, or investing confidently.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Know the true market value of your property</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Valuation%20Consultation">Talk to an Expert</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Valuation Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="ptype">Property Type</label>
+              <input id="ptype" #ptype type="text" placeholder="Apartment, House, Office">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="loc">Location</label>
+            <input id="loc" #loc type="text" placeholder="City, Area">
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, ptype.value, loc.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

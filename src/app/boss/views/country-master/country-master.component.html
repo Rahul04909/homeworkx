@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-header">
+    Country Master
+    <button class="btn btn-sm btn-primary float-end" (click)="addNewCountry()">Add New Country</button>
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Country Name</th>
+          <th>ISD Code</th>
+          <th>Timezone</th>
+          <th>Currency Name</th>
+          <th>Currency Symbol</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of countries; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ country.name }}</td>
+          <td>{{ country.isdCode }}</td>
+          <td>{{ country.timezone }}</td>
+          <td>{{ country.currencyName }}</td>
+          <td>{{ country.currencySymbol }}</td>
+          <td>
+            <span class="badge" [class.bg-success]="country.enabled" [class.bg-danger]="!country.enabled">
+              {{ country.enabled ? 'Enabled' : 'Disabled' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-info me-2" (click)="editCountry(country)">Edit</button>
+            <button class="btn btn-sm" [class.btn-warning]="country.enabled" [class.btn-success]="!country.enabled" (click)="toggleCountryStatus(country)">
+              {{ country.enabled ? 'Disable' : 'Enable' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+.plan-name { font-size: 1.25rem; font-weight: 600; }
+.plan-price { color: #6c757d; }
+.left { font-weight: 600; }
+.expiry { color: #6c757d; }
+.features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.feature { padding: 4px 0; }
+.plan-card { transition: transform .15s ease, box-shadow .15s ease; }
+.plan-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+

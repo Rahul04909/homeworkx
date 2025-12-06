@@ -1,5 +1,5 @@
 import { NgTemplateOutlet } from '@angular/common';
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
@@ -48,6 +48,17 @@ export class DefaultHeaderComponent extends HeaderComponent {
 
   constructor() {
     super();
+  }
+
+  @ViewChild('toolsDropdown', { static: true }) toolsDropdown!: DropdownComponent;
+  isToolsDropdownOpen: boolean = false;
+
+  openToolsDropdown() {
+    this.isToolsDropdownOpen = true;
+  }
+
+  closeToolsDropdown() {
+    this.isToolsDropdownOpen = false;
   }
 
   sidebarId = input('sidebar1');

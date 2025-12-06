@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+        Property Actions
+      </div>
+      <div class="col-md-6 text-end">
+        <button class="btn btn-primary" (click)="addAction()">Add New Property Action</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm" (input)="applyFilters()">
+      </div>
+    </div>
+
+    <table class="table table-hover table-outline mb-0 d-none d-sm-table">
+      <thead class="thead-light">
+        <tr>
+          <th>Id</th>
+          <th>Property Action Type Name</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let action of propertyActions">
+          <td>{{ action.id }}</td>
+          <td>{{ action.name }}</td>
+          <td>
+            <button class="btn btn-sm" [ngClass]="{'btn-warning': action.status === 'Active', 'btn-success': action.status === 'Inactive'}" (click)="toggleStatus(action)">
+              {{ action.status === 'Active' ? 'Disable' : 'Enable' }}
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="editAction(action)">Edit</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="prevPage()">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
+          <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="nextPage()">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero management-hero">
+    <div class="hero-content">
+      <h1>Property Management</h1>
+      <p>Efficient asset management with tenant services, rent collection, and maintenance scheduling.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Property%20Management%20Inquiry">Get Management</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Tenant Management</h3>
+        <p>Screening, onboarding, and communication in one place.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Rent Collection</h3>
+        <p>Automated reminders and secure payment tracking.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Maintenance</h3>
+        <p>Scheduling, repairs, and routine inspections.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Performance</h3>
+        <p>Reports to improve occupancy and returns.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Manage properties smartly with HomeWorkx</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Property%20Management%20Setup">Start Setup</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Management Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="units">Units</label>
+              <input id="units" #units type="text" placeholder="No. of units">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="details">Details</label>
+            <textarea id="details" #details rows="4" placeholder="Portfolio details"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, units.value, details.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>

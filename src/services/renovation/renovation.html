@@ -1,0 +1,75 @@
+<app-header></app-header>
+<section class="service">
+  <header class="service-hero renovation-hero">
+    <div class="hero-content">
+      <h1>Renovation</h1>
+      <p>Access experts for repairs and upgrades to improve property quality and value.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Renovation%20Request">Book a Renovation</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Plumbing & Leakages</h3>
+        <p>Fix pipe, faucet, and water issues quickly.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Painting & Finishes</h3>
+        <p>Fresh coats and touch‑ups for a new look.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Lighting & Electrical</h3>
+        <p>Upgrades for efficiency and safety.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Furniture Repairs</h3>
+        <p>Restore and refit essential furnishings.</p>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2>Make your property rental‑ready and increase its value</h2>
+      <a class="btn btn-primary" href="mailto:homeworxinc001@gmail.com?subject=Renovation%20Consultation">Get Expert Help</a>
+    </div>
+
+    <div class="enquiry-card">
+      <div>
+        <h2>Renovation Enquiry</h2>
+        <form novalidate class="enquiry-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input id="name" #name type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" #email type="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="phone">Phone</label>
+              <input id="phone" #phone type="tel" placeholder="+234…">
+            </div>
+            <div class="form-field">
+              <label for="work">Work Type</label>
+              <input id="work" #work type="text" placeholder="Plumbing, Painting, Lighting">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="details">Details</label>
+            <textarea id="details" #details rows="4" placeholder="Describe the repairs or upgrades"></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-primary" (click)="sendEmail(name.value, email.value, phone.value, work.value, details.value)">Send Enquiry</button>
+          </div>
+        </form>
+      </div>
+      <div class="enquiry-image"></div>
+    </div>
+  </div>
+</section>
+<app-footer></app-footer>
