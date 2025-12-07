@@ -53,8 +53,10 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Services',
-    url: '/services',
-    iconComponent: { name: 'cil-task' }
+    iconComponent: { name: 'cil-task' },
+    children: [
+      { name: 'Service Leads', url: '/service-leads' }
+    ]
   },
   {
     name: 'Subscription Plans',

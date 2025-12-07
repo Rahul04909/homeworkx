@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header">
+    Service Leads
+  </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Request Number</th>
+          <th>Date/Time</th>
+          <th>View</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lead of serviceLeads; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ lead.requestNumber }}</td>
+          <td>{{ lead.dateTime }}</td>
+          <td>
+            <button class="btn btn-sm btn-info" (click)="viewLead(lead)">View</button>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-danger" (click)="deleteLead(lead)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

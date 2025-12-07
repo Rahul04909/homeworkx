@@ -144,6 +144,13 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'service-leads',
+        loadComponent: () => import('../views/service-leads/service-leads.component').then(m => m.ServiceLeadsComponent),
+        data: {
+          title: 'Service Leads'
+        }
+      },
+      {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
       },
