@@ -164,7 +164,7 @@ import {
                   </div>
 
                   <div class="d-grid">
-                    <button cButton color="success" type="submit" [disabled]="form.invalid || passwordMismatch">Create Account</button>
+                    <button cButton color="success" type="submit" [disabled]="form.invalid || passwordMismatch">Complete Sign-up</button>
                   </div>
                 </form>
               </c-card-body>
