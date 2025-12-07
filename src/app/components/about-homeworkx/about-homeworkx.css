@@ -43,8 +43,17 @@
 .btn { padding: 10px 16px; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
 .btn-primary { background: var(--brand); color: #fff; }
 .btn-primary:hover { background: var(--brand-600); }
-.btn-outline { border: 2px solid var(--brand); color: var(--brand); }
-.btn-outline:hover { background: var(--brand); color: #fff; }
+.btn-dark-primary {
+  background: #000;
+  color: #fff;
+}
+.btn-dark-primary:hover {
+  background: #333;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 
 /* Overrides */
 .stats-cards { margin-top: 32px; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; }
@@ -163,8 +172,6 @@
 .cta-content { text-align: center; }
 .cta-title { color: var(--brand); font-size: 2rem; font-weight: 800; }
 .cta-description { color: #555; margin: 10px auto 18px; max-width: 700px; }
-.btn-outline { border: 2px solid var(--brand); color: var(--brand); padding: 8px 16px; border-radius: 4px; }
-.btn-outline:hover { background: var(--brand); color: #fff; }
 
 /* Animations */
 .animate { opacity: 0; transform: translateY(12px); transition: all 0.4s ease; }
