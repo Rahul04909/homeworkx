@@ -143,6 +143,10 @@
     transition: all 0.3s ease;
 }
 
+.search-btn i {
+    color: #fff;
+}
+
 .search-input-wrapper input::placeholder {
     color: #aaa;
     transition: color 0.3s ease;
@@ -188,22 +192,25 @@
     border-right: none;
 }
 
-.search-btn-col {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
 .search-btn {
     background-color: #1e2a38;
     color: #fff;
     border: none;
-    border-radius: 30px;
-    padding: 12px 30px;
-    font-size: 1rem;
+    border-radius: 8px; /* Smaller border-radius */
+    padding: 8px 15px; /* Adjusted padding */
+    font-size: 0.9rem; /* Slightly smaller font size */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #27364B;
+    transform: translateY(-2px);
+}
+
+.search-input-wrapper .search-btn {
+    margin-left: auto; /* Push button to the right */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
