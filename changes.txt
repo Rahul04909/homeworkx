@@ -1,3 +1,5 @@
 blogs to be add in the admin
 services dropdown to be add in header
 user, agent, owner forgot & signup pages to be link
+
+property type actions search bar and pagination to be removed from admin pages 

@@ -74,6 +74,76 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'pending-self-verification',
+        loadComponent: () => import('../views/pending-self-verification/pending-self-verification.component').then(m => m.PendingSelfVerificationComponent),
+        data: {
+          title: 'Pending Self Verification'
+        }
+      },
+      {
+        path: 'self-verified',
+        loadComponent: () => import('../views/self-verified/self-verified.component').then(m => m.SelfVerifiedComponent),
+        data: {
+          title: 'Self Verified'
+        }
+      },
+      {
+        path: 'pending-approval-owners',
+        loadComponent: () => import('../views/pending-approval-owners/pending-approval-owners.component').then(m => m.PendingApprovalOwnersComponent),
+        data: {
+          title: 'Pending Approval Owners'
+        }
+      },
+      {
+        path: 'approved-owners',
+        loadComponent: () => import('../views/approved-owners/approved-owners.component').then(m => m.ApprovedOwnersComponent),
+        data: {
+          title: 'Approved Owners'
+        }
+      },
+      {
+        path: 'owner-closure-requests',
+        loadComponent: () => import('../views/owner-closure-requests/owner-closure-requests.component').then(m => m.OwnerClosureRequestsComponent),
+        data: {
+          title: 'Owner Closure Requests'
+        }
+      },
+      {
+        path: 'owner-closed-accounts',
+        loadComponent: () => import('../views/owner-closed-accounts/owner-closed-accounts.component').then(m => m.OwnerClosedAccountsComponent),
+        data: {
+          title: 'Owner Closed Accounts'
+        }
+      },
+      {
+        path: 'pending-approval-agents',
+        loadComponent: () => import('../views/pending-approval-agents/pending-approval-agents.component').then(m => m.PendingApprovalAgentsComponent),
+        data: {
+          title: 'Pending Approval Agents'
+        }
+      },
+      {
+        path: 'approved-agents',
+        loadComponent: () => import('../views/approved-agents/approved-agents.component').then(m => m.ApprovedAgentsComponent),
+        data: {
+          title: 'Approved Agents'
+        }
+      },
+      {
+        path: 'agent-closure-requests',
+        loadComponent: () => import('../views/agent-closure-requests/agent-closure-requests.component').then(m => m.AgentClosureRequestsComponent),
+        data: {
+          title: 'Agent Closure Requests'
+        }
+      },
+      {
+        path: 'agent-closed-accounts',
+        loadComponent: () => import('../views/agent-closed-accounts/agent-closed-accounts.component').then(m => m.AgentClosedAccountsComponent),
+        data: {
+          title: 'Agent Closed Accounts'
+        }
+      },
+      {
         path: 'theme',
         loadChildren: () => import('./views/theme/routes').then((m) => m.routes)
       },

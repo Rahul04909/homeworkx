@@ -1,0 +1,84 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+        Pending Approval Agents
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row mb-3">
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchTerm" (input)="applyFilters()">
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover table-outline mb-0 d-none d-sm-table">
+        <thead class="thead-light">
+          <tr>
+            <th>ID</th>
+            <th>Signup Date/Time</th>
+            <th>Delay Time (HH:MM)</th>
+            <th>Name</th>
+            <th>Email ID</th>
+            <th>Mobile</th>
+            <th>Business Name</th>
+            <th>Business Address</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zipcode</th>
+            <th>Business ID</th>
+            <th>Business Tax Details</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of pendingAgents">
+            <td>{{ item.id }}</td>
+            <td>{{ formatDateTime(item.signupDateTime) }}</td>
+            <td>{{ item.delayTime }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.mobile }}</td>
+            <td>{{ item.businessName }}</td>
+            <td>{{ item.businessAddress }}</td>
+            <td>{{ item.country }}</td>
+            <td>{{ item.city }}</td>
+            <td>{{ item.state }}</td>
+            <td>{{ item.zipcode }}</td>
+            <td>{{ item.businessId }}</td>
+            <td>{{ item.businessTaxDetails }}</td>
+            <td>
+              <button class="btn btn-success btn-sm me-1" (click)="approveAgent(item)">
+                <i class="fa fa-check"></i> Approve
+              </button>
+              <button class="btn btn-danger btn-sm" (click)="deleteAgent(item)">
+                <i class="fa fa-trash"></i> Delete
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="pendingAgents.length === 0">
+            <td colspan="15" class="text-center">No pending agents found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <nav aria-label="Page navigation" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1 || totalPages === 0">
+          <a class="page-link" (click)="prevPage()" [attr.aria-disabled]="currentPage === 1 || totalPages === 0">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
+          <a class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages || totalPages === 0">
+          <a class="page-link" (click)="nextPage()" [attr.aria-disabled]="currentPage === totalPages || totalPages === 0">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+

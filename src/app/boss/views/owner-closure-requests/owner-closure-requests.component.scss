@@ -1,0 +1,23 @@
+.card {
+  margin-bottom: 2rem;
+}
+
+.card-body {
+  padding-bottom: 2rem;
+}
+
+.pagination {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+
+.page-link {
+  cursor: pointer;
+  user-select: none;
+}
+
+.page-item.disabled .page-link {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
