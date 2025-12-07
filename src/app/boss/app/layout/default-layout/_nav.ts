@@ -8,7 +8,6 @@ export const navItems: INavData[] = [
       { name: 'Nigerian States', url: '/nigerian-states' },
       { name: 'Nigerian Cities', url: '/nigerian-cities' },
       { name: 'Country Master', url: '/country-master' },
-      { name: 'All Customers', url: '/all-customers' },
       { name: 'Property Action Types', url: '/property-actions' },
       { name: 'Property Types', url: '/property-types' }
     ]
