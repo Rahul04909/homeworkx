@@ -16,13 +16,12 @@ export const navItems: INavData[] = [
     name: 'Customers',
     iconComponent: { name: 'cil-user' },
     children: [
-      { name: 'All Customers', url: '/all-customers' },
       { name: 'Pending Self Verification', url: '/pending-self-verification' },
       { name: 'Self Verified', url: '/self-verified' },
       { name: 'Closure Requests', url: '/closure-requests' },
       { name: 'Closed Accounts', url: '/closed-accounts' },
       { name: 'Active Subscriptions', url: '/customers/active-subscriptions' },
-      { name: 'Expired Subscriptions', url: '/customers/expired-subscriptions' },
+      { name: 'Transactions', url: '/customers/transactions' },
       { name: 'Conversations', url: '/customers/conversations' }
     ]
   },
@@ -67,6 +66,11 @@ export const navItems: INavData[] = [
     name: 'Advertisement',
     url: '/ads',
     iconComponent: { name: 'cil-description' }
+  },
+  {
+    name: 'Blogs',
+    url: '/blogs',
+    iconComponent: { name: 'cil-book' }
   },
   {
     name: 'Update Password',
