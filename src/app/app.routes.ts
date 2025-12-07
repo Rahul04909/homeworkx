@@ -26,6 +26,9 @@ export const routes: Routes = [
   { path: 'services/project', loadComponent: () => import('../services/project/project').then(m => m.Project) },
   { path: 'services/rent', loadComponent: () => import('../services/rent/rent').then(m => m.Rent) },
   { path: 'services/sell', loadComponent: () => import('../services/sell/sell').then(m => m.Sell) },
+  { path: 'property-listing', loadComponent: () => import('../pages/property-listing/property-listing').then(m => m.PropertyListingComponent) },
+  { path: 'property-details', redirectTo: '/property-listing', pathMatch: 'full' },
+  { path: 'property-details/:id', loadComponent: () => import('../pages/property-details/property-details').then(m => m.PropertyDetailsComponent) },
   {
     path: 'admin',
     loadChildren: () => import('./boss/app/app.routes').then(m => m.routes)
