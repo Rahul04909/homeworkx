@@ -26,15 +26,12 @@
           <td>{{ country.currencyName }}</td>
           <td>{{ country.currencySymbol }}</td>
           <td>
-            <span class="badge" [class.bg-success]="country.enabled" [class.bg-danger]="!country.enabled">
+            <button class="btn btn-sm" [class.bg-success]="country.enabled" [class.bg-danger]="!country.enabled" (click)="toggleCountryStatus(country)">
               {{ country.enabled ? 'Enabled' : 'Disabled' }}
-            </span>
+            </button>
           </td>
           <td>
             <button class="btn btn-sm btn-info me-2" (click)="editCountry(country)">Edit</button>
-            <button class="btn btn-sm" [class.btn-warning]="country.enabled" [class.btn-success]="!country.enabled" (click)="toggleCountryStatus(country)">
-              {{ country.enabled ? 'Disable' : 'Enable' }}
-            </button>
           </td>
         </tr>
       </tbody>

@@ -20,15 +20,12 @@
           <td>{{ city.name }}</td>
           <td>{{ city.state }}</td>
           <td>
-            <span class="badge" [class.bg-success]="city.enabled" [class.bg-danger]="!city.enabled">
+            <button class="btn btn-sm" [class.bg-success]="city.enabled" [class.bg-danger]="!city.enabled" (click)="toggleCityStatus(city)">
               {{ city.enabled ? 'Enabled' : 'Disabled' }}
-            </span>
+            </button>
           </td>
           <td>
             <button class="btn btn-sm btn-info me-2" (click)="editCity(city)">Edit</button>
-            <button class="btn btn-sm" [class.btn-warning]="city.enabled" [class.btn-success]="!city.enabled" (click)="toggleCityStatus(city)">
-              {{ city.enabled ? 'Disable' : 'Enable' }}
-            </button>
           </td>
         </tr>
       </tbody>

@@ -18,15 +18,12 @@
           <td>{{ i + 1 }}</td>
           <td>{{ state.name }}</td>
           <td>
-            <span class="badge" [class.bg-success]="state.enabled" [class.bg-danger]="!state.enabled">
+            <button class="btn btn-sm" [class.bg-success]="state.enabled" [class.bg-danger]="!state.enabled" (click)="toggleStateStatus(state)">
               {{ state.enabled ? 'Enabled' : 'Disabled' }}
-            </span>
+            </button>
           </td>
           <td>
             <button class="btn btn-sm btn-info me-2" (click)="editState(state)">Edit</button>
-            <button class="btn btn-sm" [class.btn-warning]="state.enabled" [class.btn-success]="!state.enabled" (click)="toggleStateStatus(state)">
-              {{ state.enabled ? 'Disable' : 'Enable' }}
-            </button>
           </td>
         </tr>
       </tbody>

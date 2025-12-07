@@ -23,69 +23,14 @@ export class PropertyTypesComponent implements OnInit {
   ];
 
   propertyTypes: PropertyType[] = [];
-  searchTerm: string = '';
-  currentPage: number = 1;
-  itemsPerPage: number = 10;
-  totalPages: number = 1;
 
   ngOnInit(): void {
-    this.applyFilters();
-  }
-
-  applyFilters(): void {
-    let filteredTypes = this.allPropertyTypes;
-
-    if (this.searchTerm) {
-      filteredTypes = filteredTypes.filter(type =>
-        type.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    }
-
-    this.propertyTypes = filteredTypes;
-    this.calculatePagination();
-    this.getPaginatedPropertyTypes();
-  }
-
-  calculatePagination(): void {
-    this.totalPages = Math.ceil(this.propertyTypes.length / this.itemsPerPage);
-    if (this.currentPage > this.totalPages && this.totalPages > 0) {
-      this.currentPage = this.totalPages;
-    } else if (this.totalPages === 0) {
-      this.currentPage = 0;
-    }
-  }
-
-  getPaginatedPropertyTypes(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.propertyTypes = this.propertyTypes.slice(startIndex, endIndex);
-  }
-
-  goToPage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-      this.applyFilters();
-    }
-  }
-
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.applyFilters();
-    }
-  }
-
-  prevPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.applyFilters();
-    }
+    this.propertyTypes = [...this.allPropertyTypes];
   }
 
   toggleStatus(type: PropertyType): void {
     type.status = type.status === 'Active' ? 'Inactive' : 'Active';
     alert(`${type.name} status is now ${type.status}.`);
-    this.applyFilters();
   }
 
   editType(type: PropertyType): void {
