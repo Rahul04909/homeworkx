@@ -31,6 +31,7 @@
             <th>Business Tax Details</th>
             <th>Last Active</th>
             <th>Status</th>
+            <th>Actions</th>
 
           </tr>
         </thead>
@@ -55,9 +56,12 @@
             <td>{{ item.businessTaxDetails }}</td>
             <td>{{ formatDateTime(item.lastActive) }}</td>
             <td>
-              <button class="btn btn-sm" [ngClass]="{'btn-warning': item.status === 'Active', 'btn-success': item.status === 'Inactive'}" (click)="toggleStatus(item)">
-                {{ item.status === 'Active' ? 'Disable' : 'Enable' }}
-              </button>
+              <c-badge [color]="item.status === 'Active' ? 'success' : 'danger'">
+                {{ item.status === 'Active' ? 'Active' : 'Inactive' }}
+              </c-badge>
+            </td>
+            <td>
+              <button cButton color="primary" size="sm">Edit</button>
             </td>
           </tr>
           <tr *ngIf="approvedAgents.length === 0">

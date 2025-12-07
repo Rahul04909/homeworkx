@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BadgeModule, ButtonModule } from '@coreui/angular';
 
 interface ApprovedAgent {
   id: number;
@@ -22,7 +23,7 @@ interface ApprovedAgent {
 @Component({
   selector: 'app-approved-agents',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BadgeModule, ButtonModule],
   templateUrl: './approved-agents.component.html',
   styleUrls: ['./approved-agents.component.scss']
 })

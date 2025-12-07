@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ButtonModule } from '@coreui/angular';
 
 interface ClosureRequest {
   id: number;
@@ -16,7 +17,7 @@ interface ClosureRequest {
   templateUrl: './closure-request.component.html',
   styleUrls: ['./closure-request.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, ButtonModule]
 })
 export class ClosureRequestComponent implements OnInit {
   allRequests: ClosureRequest[] = [

@@ -23,7 +23,6 @@
           <th>Name</th>
           <th>Email</th>
           <th>Request Date</th>
-          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -33,14 +32,13 @@
           <td>{{ request.name }}</td>
           <td>{{ request.email }}</td>
           <td>{{ request.requestDate }}</td>
-
           <td>
             <button *ngIf="request.status === 'Pending'" class="btn btn-sm btn-success me-2" (click)="approveRequest(request)">Approve</button>
             <button *ngIf="request.status === 'Pending'" class="btn btn-sm btn-danger" (click)="rejectRequest(request)">Reject</button>
           </td>
         </tr>
         <tr *ngIf="pagedRequests.length === 0">
-          <td colspan="6" class="text-center">No closure requests found.</td>
+          <td colspan="5" class="text-center">No closure requests found.</td>
         </tr>
       </tbody>
     </table>

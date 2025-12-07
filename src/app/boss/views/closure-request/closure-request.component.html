@@ -42,14 +42,6 @@
           <td>{{ request.email }}</td>
           <td>{{ request.requestDate }}</td>
           <td>
-            <span class="badge"
-              [class.bg-warning]="request.status === 'Pending'"
-              [class.bg-success]="request.status === 'Approved'"
-              [class.bg-danger]="request.status === 'Rejected'">
-              {{ request.status }}
-            </span>
-          </td>
-          <td>
             <button *ngIf="request.status === 'Pending'" class="btn btn-sm btn-success me-2" (click)="approveRequest(request)">Approve</button>
             <button *ngIf="request.status === 'Pending'" class="btn btn-sm btn-danger" (click)="rejectRequest(request)">Reject</button>
           </td>

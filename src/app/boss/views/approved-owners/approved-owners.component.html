@@ -25,6 +25,7 @@
           <th>City</th>
           <th>Last Active</th>
           <th>Status</th>
+            <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -42,11 +43,14 @@
           <td>{{ item.country }}</td>
           <td>{{ item.city }}</td>
           <td>{{ formatDateTime(item.lastActive) }}</td>
-          <td>
-            <button class="btn btn-sm" [ngClass]="{'btn-warning': item.status === 'Active', 'btn-success': item.status === 'Inactive'}" (click)="toggleStatus(item)">
-              {{ item.status === 'Active' ? 'Disable' : 'Enable' }}
-            </button>
-          </td>
+            <td>
+              <c-badge [color]="item.status === 'Active' ? 'success' : 'danger'">
+                {{ item.status === 'Active' ? 'Active' : 'Inactive' }}
+              </c-badge>
+            </td>
+            <td>
+              <button cButton color="primary" size="sm">Edit</button>
+            </td>
         </tr>
         <tr *ngIf="approvedOwners.length === 0">
           <td colspan="9" class="text-center">No approved owners found.</td>

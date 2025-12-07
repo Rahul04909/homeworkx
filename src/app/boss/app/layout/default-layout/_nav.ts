@@ -55,7 +55,7 @@ export const navItems: INavData[] = [
     name: 'Services',
     iconComponent: { name: 'cil-task' },
     children: [
-      { name: 'Service Leads', url: '/service-leads' }
+      { name: 'Home Loan Leads', url: '/service-leads' }
     ]
   },
   {
@@ -71,7 +71,17 @@ export const navItems: INavData[] = [
   {
     name: 'Blogs',
     url: '/blogs',
-    iconComponent: { name: 'cil-book' }
+    iconComponent: { name: 'cil-description' }
+  },
+  {
+    name: 'Sub-Admins',
+    url: '/sub-admins',
+    iconComponent: { name: 'cil-user' }
+  },
+  {
+    name: 'Ng Wiki',
+    url: '/ng-wiki',
+    iconComponent: { name: 'cil-task' }
   },
   {
     name: 'Update Password',

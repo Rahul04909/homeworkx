@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    Service Leads
+    Home Loans
   </div>
   <div class="card-body">
     <table class="table table-bordered table-striped">
@@ -29,3 +29,24 @@
     </table>
   </div>
 </div>
+
+<c-modal #viewLeadModal [visible]="viewModalVisible" (visibleChange)="handleViewModalChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>Service Lead Details</h5>
+    <button cButtonClose (click)="viewModalVisible = false"></button>
+  </c-modal-header>
+  <c-modal-body>
+    <div *ngIf="selectedLead">
+      <p><strong>Request Number:</strong> {{ selectedLead.requestNumber }}</p>
+      <p><strong>Date/Time:</strong> {{ selectedLead.dateTime }}</p>
+      <p><strong>Contact Person Mobile No:</strong> {{ selectedLead.contactPersonMobileNo }}</p>
+      <p><strong>Contact Person Email Id:</strong> {{ selectedLead.contactPersonEmailId }}</p>
+      <p><strong>Subject:</strong> {{ selectedLead.subject }}</p>
+      <p><strong>Message:</strong> {{ selectedLead.message }}</p>
+      <p *ngIf="selectedLead.attachment"><strong>Attachment:</strong> <a [href]="selectedLead.attachment" target="_blank">View Attachment</a></p>
+    </div>
+  </c-modal-body>
+  <c-modal-footer>
+    <button cButton color="secondary" (click)="viewModalVisible = false">Close</button>
+  </c-modal-footer>
+</c-modal>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BadgeModule, ButtonModule } from '@coreui/angular';
 
 interface ApprovedOwner {
   id: number;
@@ -17,7 +18,7 @@ interface ApprovedOwner {
 @Component({
   selector: 'app-approved-owners',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, BadgeModule, ButtonModule],
   templateUrl: './approved-owners.component.html',
   styleUrls: ['./approved-owners.component.scss']
 })
