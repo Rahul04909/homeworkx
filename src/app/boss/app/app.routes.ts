@@ -185,6 +185,13 @@ export const routes: Routes = [
       {
         path: 'pages',
         loadChildren: () => import('./views/pages/routes').then((m) => m.routes)
+      },
+      {
+        path: 'profile/password',
+        loadComponent: () => import('../views/update-password/update-password.component').then(m => m.UpdatePasswordComponent),
+        data: {
+          title: 'Update Password'
+        }
       }
     ]
   },
