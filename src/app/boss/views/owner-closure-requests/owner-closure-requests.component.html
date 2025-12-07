@@ -7,14 +7,14 @@
       <div class="col-md-4">
         <input type="text" class="form-control" placeholder="Search requests..." [(ngModel)]="searchTerm" (input)="applyFilters()">
       </div>
-      <div class="col-md-3">
+      <!-- <div class="col-md-3">
         <select class="form-select" [(ngModel)]="filterStatus" (change)="applyFilters()">
           <option value="">All Statuses</option>
           <option value="Pending">Pending</option>
           <option value="Approved">Approved</option>
           <option value="Rejected">Rejected</option>
         </select>
-      </div>
+      </div> -->
     </div>
     <table class="table table-bordered table-striped">
       <thead>
@@ -33,14 +33,7 @@
           <td>{{ request.name }}</td>
           <td>{{ request.email }}</td>
           <td>{{ request.requestDate }}</td>
-          <td>
-            <span class="badge"
-              [class.bg-warning]="request.status === 'Pending'"
-              [class.bg-success]="request.status === 'Approved'"
-              [class.bg-danger]="request.status === 'Rejected'">
-              {{ request.status }}
-            </span>
-          </td>
+
           <td>
             <button *ngIf="request.status === 'Pending'" class="btn btn-sm btn-success me-2" (click)="approveRequest(request)">Approve</button>
             <button *ngIf="request.status === 'Pending'" class="btn btn-sm btn-danger" (click)="rejectRequest(request)">Reject</button>

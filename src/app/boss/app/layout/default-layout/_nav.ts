@@ -20,8 +20,8 @@ export const navItems: INavData[] = [
       { name: 'Self Verified', url: '/self-verified' },
       { name: 'Closure Requests', url: '/closure-requests' },
       { name: 'Closed Accounts', url: '/closed-accounts' },
-      { name: 'Active Subscriptions', url: '/customers/active-subscriptions' },
       { name: 'Transactions', url: '/customers/transactions' },
+      { name: 'Subscriptions', url: '/customers/subscriptions' },
       { name: 'Conversations', url: '/customers/conversations' }
     ]
   },
@@ -33,8 +33,9 @@ export const navItems: INavData[] = [
       { name: 'Approved Owners', url: '/approved-owners' },
       { name: 'Closure Requests', url: '/owner-closure-requests' },
       { name: 'Closed Accounts', url: '/owner-closed-accounts' },
+      { name: 'Transactions', url: '/owners/transactions' },
+      { name: 'Subscriptions', url: '/owners/subscriptions' },
       { name: 'Conversations', url: '/owners/conversations' },
-      { name: 'Transactions', url: '/owners/transactions' }
     ]
   },
   {

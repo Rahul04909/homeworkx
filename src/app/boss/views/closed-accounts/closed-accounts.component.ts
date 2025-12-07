@@ -30,7 +30,7 @@ export class ClosedAccountsComponent implements OnInit {
   closedAccounts: ClosedAccount[] = [];
   pagedClosedAccounts: ClosedAccount[] = [];
   searchTerm: string = '';
-  filterType: string = '';
+
   currentPage: number = 1;
   itemsPerPage: number = 5;
   totalPages: number = 0;
@@ -52,10 +52,7 @@ export class ClosedAccountsComponent implements OnInit {
       );
     }
 
-    // Apply type filter
-    if (this.filterType) {
-      filteredAccounts = filteredAccounts.filter(account => account.type === this.filterType);
-    }
+
 
     this.closedAccounts = filteredAccounts;
     this.currentPage = 1; // Reset to first page after filtering
