@@ -27,4 +27,4 @@
 .enquiry-image{border-radius:12px;background-image:url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop');background-size:cover;background-position:center}
 @media (max-width:992px){.service-container{padding:18px}.features-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.service{padding-top:76px}.service-hero{height:200px}.features-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column;align-items:flex-start}.enquiry-card{grid-template-columns:1fr}}
-.loan-hero{background-image:url('https://images.unsplash.com/photo-1582054605173-0331b1c4c7b4?q=80&w=1600&auto=format&fit=crop')}
+.loan-hero{background:url('/assets/images/hero/hero.jpg') center/cover no-repeat}

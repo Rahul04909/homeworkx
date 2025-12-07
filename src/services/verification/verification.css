@@ -2,7 +2,7 @@
 .service-hero{position:relative;height:240px;border-bottom:1px solid rgba(39,54,75,.12);background:linear-gradient(180deg,rgba(39,54,75,.08),rgba(39,54,75,.02))}
 .service-hero{background-size:cover;background-position:center}
 .service-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(39,54,75,.35),rgba(39,54,75,.08))}
-.verification-hero{background-image:url('https://images.unsplash.com/photo-1517638851339-bd62c8684111?q=80&w=1600&auto=format&fit=crop')}
+.verification-hero{background:url('/assets/images/hero/hero.jpg') center/cover no-repeat}
 /* Enquiry */
 .enquiry-card{display:grid;grid-template-columns:1fr .8fr;gap:16px;background:#fff;border:1px solid rgba(39,54,75,.12);box-shadow:0 10px 24px rgba(39,54,75,.08);border-radius:16px;padding:18px;margin-top:20px}
 .enquiry-form{display:flex;flex-direction:column;gap:12px}

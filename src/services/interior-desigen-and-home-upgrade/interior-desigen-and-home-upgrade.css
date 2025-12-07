@@ -17,7 +17,7 @@
 .cta-banner h2{margin:0;font-size:1.4rem}
 @media (max-width:992px){.service-container{padding:18px}.features-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.service{padding-top:76px}.service-hero{height:200px}.features-grid{grid-template-columns:1fr}.hero-actions{flex-direction:column;align-items:flex-start}.enquiry-card{grid-template-columns:1fr}}
-.interior-hero{background-image:url('https://images.unsplash.com/photo-1505692794403-39ff11f1fd7f?q=80&w=1600&auto=format&fit=crop')}
+.interior-hero{background:url('/assets/images/hero/hero.jpg') center/cover no-repeat}
 /* Enquiry */
 .enquiry-card{display:grid;grid-template-columns:1fr .8fr;gap:16px;background:#fff;border:1px solid rgba(39,54,75,.12);box-shadow:0 10px 24px rgba(39,54,75,.08);border-radius:16px;padding:18px;margin-top:20px}
 .enquiry-form{display:flex;flex-direction:column;gap:12px}
