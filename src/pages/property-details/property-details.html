@@ -1,0 +1,386 @@
+<app-header></app-header>
+
+<section class="property-details-page" *ngIf="property">
+  <!-- Image Gallery Section -->
+  <div class="gallery-section">
+    <div class="main-image-container">
+      <img 
+        [src]="property.images?.[selectedImageIndex] || property.image" 
+        [alt]="property.title"
+        class="main-image"
+      >
+      <button class="nav-btn prev-btn" (click)="previousImage()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button class="nav-btn next-btn" (click)="nextImage()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <span *ngIf="property.featured" class="featured-badge">Featured</span>
+      <span class="status-badge" [class.for-rent]="property.status === 'For Rent'" [class.for-sale]="property.status === 'For Sale'">
+        {{ property.status }}
+      </span>
+    </div>
+    <div class="thumbnail-container" *ngIf="property.images && property.images.length > 1">
+      <div 
+        *ngFor="let img of property.images; let i = index"
+        class="thumbnail"
+        [class.active]="i === selectedImageIndex"
+        (click)="selectImage(i)"
+      >
+        <img [src]="img" [alt]="property.title + ' - Image ' + (i + 1)">
+      </div>
+    </div>
+  </div>
+
+  <div class="details-container">
+    <!-- Top Section: Property Info & Quick Actions -->
+    <div class="property-top-section">
+      <div class="property-info-left">
+        <div class="property-title-section">
+          <h1>{{ property.title }}</h1>
+          <button class="favorite-btn" [class.active]="property.isFavorite" (click)="toggleFavorite()">
+            <i class="fas" [class.fa-heart]="property.isFavorite" [class.fa-heart-o]="!property.isFavorite"></i>
+          </button>
+        </div>
+        <p class="property-type-location">
+          <span class="property-type">{{ property.type }}</span>
+          <span class="separator">•</span>
+          <span class="property-location">
+            <i class="fas fa-map-marker-alt"></i> {{ property.location }}
+          </span>
+        </p>
+        <div class="property-meta">
+          <div class="meta-item" *ngIf="property.bedrooms > 0">
+            <i class="fas fa-bed"></i> {{ property.bedrooms }} Bed
+          </div>
+          <div class="meta-item" *ngIf="property.bathrooms > 0">
+            <i class="fas fa-bath"></i> {{ property.bathrooms }} Bath
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-ruler-combined"></i> {{ property.area }} sqft
+          </div>
+          <div class="meta-item" *ngIf="property.parking && property.parking > 0">
+            <i class="fas fa-car"></i> {{ property.parking }} Parking
+          </div>
+        </div>
+      </div>
+      <div class="property-actions-right">
+        <div class="price-section">
+          <div class="price-main">
+            <span class="price">{{ formatPrice(property.price) }}</span>
+            <span class="price-period" *ngIf="property.status === 'For Rent'">/month</span>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button class="btn-primary view-seller-btn" (click)="scrollToContactForm()">
+            <i class="fas fa-user"></i> View Seller
+          </button>
+          <button class="btn-secondary share-btn" (click)="shareProperty()">
+            <i class="fas fa-share-alt"></i> Share
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why Consider Section -->
+    <div class="why-consider-section" *ngIf="property.whyConsider && property.whyConsider.length > 0">
+      <h2>Why you should consider {{ property.title }}?</h2>
+      <ul class="consider-list">
+        <li *ngFor="let point of property.whyConsider">
+          <i class="fas fa-check-circle"></i> {{ point }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- RERA & Possession Status -->
+    <div class="status-badges-section">
+      <div class="status-badge-item" *ngIf="property.reraRegistered">
+        <i class="fas fa-certificate"></i>
+        <span>RERA Registered</span>
+      </div>
+      <div class="status-badge-item" *ngIf="property.possessionStatus">
+        <i class="fas fa-key"></i>
+        <span>{{ property.possessionStatus }}</span>
+      </div>
+    </div>
+
+    <!-- Investment Options -->
+    <div class="investment-section" *ngIf="property.investmentOptions && property.investmentOptions.length > 0">
+      <h2>Investment Options in {{ property.title }}</h2>
+      <div class="investment-cards">
+        <div *ngFor="let option of property.investmentOptions" class="investment-card">
+          <div class="investment-type">{{ option.type }}</div>
+          <div class="investment-price">
+            {{ formatPrice(option.minPrice) }} - {{ formatPrice(option.maxPrice) }}
+          </div>
+        </div>
+      </div>
+      <button class="btn-download" (click)="downloadPriceList()">
+        <i class="fas fa-download"></i> Download Price List
+      </button>
+    </div>
+
+    <!-- Units Available -->
+    <div class="units-section" *ngIf="property.unitsAvailable && property.unitsAvailable.length > 0">
+      <h2>Units Available for Sale</h2>
+      <div class="units-table">
+        <div class="unit-row header-row">
+          <div class="unit-cell">Type</div>
+          <div class="unit-cell">Area</div>
+          <div class="unit-cell">Price</div>
+        </div>
+        <div *ngFor="let unit of property.unitsAvailable" class="unit-row">
+          <div class="unit-cell">{{ unit.type }}</div>
+          <div class="unit-cell">{{ unit.area }} sqft</div>
+          <div class="unit-cell price-cell">{{ formatPrice(unit.price) }}/month</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Highlights Banner -->
+    <div class="highlights-banner">
+      <div class="banner-content">
+        <h3>Special Offer</h3>
+        <p>Get up to 15% discount on select units. Limited time offer!</p>
+        <button class="btn-banner" (click)="scrollToContactForm()">Contact Now</button>
+      </div>
+    </div>
+
+    <!-- Location Advantages -->
+    <div class="location-section">
+      <h2>Location Advantages</h2>
+      <div class="location-grid">
+        <div *ngFor="let place of property.nearbyPlaces" class="location-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <div class="location-info">
+            <div class="location-name">{{ place.name }}</div>
+            <div class="location-distance">{{ place.distance }} away</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sellers Section -->
+    <div class="sellers-section" *ngIf="property.agentName">
+      <h2>Sellers you may contact for more details</h2>
+      <div class="sellers-grid">
+        <div class="seller-card" id="contact-form">
+          <div class="seller-header">
+            <div class="seller-avatar">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="seller-info">
+              <h3>{{ property.agentName }}</h3>
+              <p *ngIf="property.agentCompany">{{ property.agentCompany }}</p>
+            </div>
+          </div>
+          <div class="seller-contact">
+            <a [href]="'tel:' + property.agentPhone" class="contact-link">
+              <i class="fas fa-phone"></i> {{ property.agentPhone }}
+            </a>
+            <a [href]="'mailto:' + property.agentEmail" class="contact-link">
+              <i class="fas fa-envelope"></i> {{ property.agentEmail }}
+            </a>
+          </div>
+          <button class="btn-view-profile" (click)="scrollToContactForm()">View Profile</button>
+        </div>
+        <div class="seller-card share-card">
+          <div class="share-content">
+            <i class="fas fa-share-alt"></i>
+            <h3>Share to a friend</h3>
+            <p>Let your friends know about this property</p>
+            <button class="btn-share" (click)="shareProperty()">Share Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Facilities -->
+    <div class="facilities-section">
+      <h2>Top Facilities</h2>
+      <div class="facilities-grid">
+        <div *ngFor="let amenity of (showAllFacilities ? property.amenities : property.amenities?.slice(0, 8))" class="facility-item">
+          <i class="fas fa-check"></i>
+          <span>{{ amenity }}</span>
+        </div>
+      </div>
+      <button *ngIf="property.amenities && property.amenities.length > 8" class="btn-view-more" (click)="showAllFacilities = !showAllFacilities">
+        {{ showAllFacilities ? 'View Less' : 'View More' }}
+        <i class="fas" [class.fa-chevron-up]="showAllFacilities" [class.fa-chevron-down]="!showAllFacilities"></i>
+      </button>
+    </div>
+
+    <!-- About Property -->
+    <div class="about-section">
+      <h2>About {{ property.title }}</h2>
+      <p>{{ property.description }}</p>
+      <div class="property-specs">
+        <div class="spec-item">
+          <span class="spec-label">Property Type:</span>
+          <span class="spec-value">{{ property.type }}</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Status:</span>
+          <span class="spec-value">{{ property.status }}</span>
+        </div>
+        <div class="spec-item" *ngIf="property.yearBuilt">
+          <span class="spec-label">Year Built:</span>
+          <span class="spec-value">{{ property.yearBuilt }}</span>
+        </div>
+        <div class="spec-item">
+          <span class="spec-label">Furnished:</span>
+          <span class="spec-value">{{ property.furnished ? 'Yes' : 'No' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form-section">
+      <h2>Send Us a Message</h2>
+      <form class="contact-form" (ngSubmit)="submitContactForm()">
+        <div class="form-row">
+          <div class="form-group">
+            <input type="text" [(ngModel)]="contactForm.name" name="name" placeholder="Your Name" required class="form-input">
+          </div>
+          <div class="form-group">
+            <input type="email" [(ngModel)]="contactForm.email" name="email" placeholder="Your Email" required class="form-input">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <input type="tel" [(ngModel)]="contactForm.phone" name="phone" placeholder="Your Phone" required class="form-input">
+          </div>
+          <div class="form-group">
+            <input type="text" value="{{ property.title }}" readonly class="form-input">
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea [(ngModel)]="contactForm.message" name="message" placeholder="Your Message" rows="4" class="form-input"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+      </form>
+    </div>
+
+    <!-- Resale Properties -->
+    <div class="resale-section" *ngIf="property.resaleProperties && property.resaleProperties.length > 0">
+      <h2>Resale Properties in {{ property.title }}</h2>
+      <div class="resale-grid">
+        <div *ngFor="let resale of property.resaleProperties" class="resale-card">
+          <img [src]="resale.image" [alt]="'Resale Property ' + resale.id">
+          <div class="resale-content">
+            <div class="resale-price">{{ formatPrice(resale.price) }}/month</div>
+            <div class="resale-area">{{ resale.area }} sqft</div>
+            <button class="btn-contact-resale" (click)="scrollToContactForm()">Contact</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Similar Projects -->
+    <div class="similar-projects-section" *ngIf="property.similarProjects && property.similarProjects.length > 0">
+      <h2>Similar Projects</h2>
+      <div class="similar-projects-carousel">
+        <div *ngFor="let project of property.similarProjects" class="similar-project-card" (click)="viewProperty(project.id)">
+          <img [src]="project.image" [alt]="project.name">
+          <div class="project-info">
+            <h3>{{ project.name }}</h3>
+            <p><i class="fas fa-map-marker-alt"></i> {{ project.location }}</p>
+            <div class="project-price">{{ project.price }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Developer -->
+    <div class="developer-section" *ngIf="property.developerName">
+      <h2>About {{ property.developerName }}</h2>
+      <div class="developer-content">
+        <div class="developer-logo">
+          <i class="fas fa-building"></i>
+        </div>
+        <div class="developer-text">
+          <p>{{ property.developerDescription || 'A leading real estate developer with a proven track record of delivering quality projects.' }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects by Developer -->
+    <div class="developer-projects-section" *ngIf="property.developerProjects && property.developerProjects.length > 0">
+      <h2>Projects by {{ property.developerName }}</h2>
+      <div class="developer-projects-carousel">
+        <div *ngFor="let project of property.developerProjects" class="developer-project-card">
+          <img [src]="project.image" [alt]="project.name">
+          <div class="project-details">
+            <h3>{{ project.name }}</h3>
+            <div class="project-price-range">{{ project.priceRange }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Location Map -->
+    <div class="map-section">
+      <h2>Location</h2>
+      <div class="office-address">
+        <div class="address-card">
+          <i class="fas fa-building"></i>
+          <div class="address-content">
+            <h3>Our Office Address</h3>
+            <p>Shop 24 & 34, Mutiu Are Block, Babajide Sanwo‑Olu Shopping Complex, Ketu, Lagos</p>
+            <div class="address-contact">
+              <a href="tel:+2348106972330"><i class="fas fa-phone"></i> +234 810 697 2330</a>
+              <a href="mailto:homeworxinc001@gmail.com"><i class="fas fa-envelope"></i> homeworxinc001@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe 
+          [src]="getMapUrl('Shop 24 & 34, Mutiu Are Block, Babajide Sanwo‑Olu Shopping Complex, Ketu, Lagos')"
+          width="100%" 
+          height="450" 
+          style="border:0; border-radius: 12px;" 
+          allowfullscreen 
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- FAQs -->
+    <div class="faqs-section" *ngIf="property.faqs && property.faqs.length > 0">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faqs-list">
+        <div *ngFor="let faq of property.faqs; let i = index" class="faq-item">
+          <div class="faq-question" (click)="toggleFaq(i)">
+            <span>{{ faq.question }}</span>
+            <i class="fas" [class.fa-chevron-up]="expandedFaq === i" [class.fa-chevron-down]="expandedFaq !== i"></i>
+          </div>
+          <div class="faq-answer" [class.expanded]="expandedFaq === i">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links-section">
+      <h2>{{ property.title }} - Quick Links</h2>
+      <div class="quick-links-grid">
+        <a routerLink="/property-listing" class="quick-link">View all properties</a>
+        <a routerLink="/property-listing" class="quick-link">View all localities</a>
+        <a routerLink="/property-listing" class="quick-link">Properties in {{ property.city }}</a>
+        <a routerLink="/property-listing" class="quick-link">Properties for {{ property.status }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="!property" class="not-found">
+  <h2>Property Not Found</h2>
+  <p>The property you're looking for doesn't exist.</p>
+  <a routerLink="/property-listing" class="btn-primary">Browse Properties</a>
+</div>
+
+<app-footer></app-footer>

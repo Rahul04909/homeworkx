@@ -1,0 +1,223 @@
+<app-header></app-header>
+
+<section class="property-listing">
+  <!-- Hero Section -->
+  <header class="listing-hero">
+    <div class="hero-content">
+      <h1>Find Your Dream Property</h1>
+      <p>Discover thousands of verified properties across Nigeria</p>
+    </div>
+  </header>
+
+  <div class="listing-container">
+    <!-- Search Bar -->
+    <div class="search-section">
+      <div class="search-bar">
+        <input 
+          type="text" 
+          [(ngModel)]="filters.search" 
+          (ngModelChange)="applyFilters()"
+          placeholder="Search by location, property name..." 
+          class="search-input"
+        >
+        <button class="search-btn" (click)="applyFilters()">
+          <i class="fas fa-search"></i> Search
+        </button>
+      </div>
+    </div>
+
+    <div class="listing-layout">
+      <!-- Filters Sidebar -->
+      <aside class="filters-sidebar">
+        <div class="filters-header">
+          <h3>Filters</h3>
+          <button class="reset-btn" (click)="resetFilters()">Reset</button>
+        </div>
+
+        <div class="filter-group">
+          <label>City</label>
+          <select [(ngModel)]="filters.city" (ngModelChange)="applyFilters()" class="filter-select">
+            <option value="">All Cities</option>
+            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Property Type</label>
+          <select [(ngModel)]="filters.type" (ngModelChange)="applyFilters()" class="filter-select">
+            <option value="">All Types</option>
+            <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Status</label>
+          <select [(ngModel)]="filters.status" (ngModelChange)="applyFilters()" class="filter-select">
+            <option value="">All Status</option>
+            <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Bedrooms</label>
+          <select [(ngModel)]="filters.bedrooms" (ngModelChange)="applyFilters()" class="filter-select">
+            <option [value]="0">All</option>
+            <option *ngFor="let bed of bedroomOptions.slice(1)" [value]="bed">{{ bed }} Bedroom{{ bed > 1 ? 's' : '' }}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Furnished</label>
+          <select [(ngModel)]="filters.furnished" (ngModelChange)="applyFilters()" class="filter-select">
+            <option value="">All</option>
+            <option value="Yes">Furnished</option>
+            <option value="No">Unfurnished</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-range">
+            <input 
+              type="number" 
+              [(ngModel)]="filters.minPrice" 
+              (ngModelChange)="applyFilters()"
+              placeholder="Min" 
+              class="price-input"
+            >
+            <span>to</span>
+            <input 
+              type="number" 
+              [(ngModel)]="filters.maxPrice" 
+              (ngModelChange)="applyFilters()"
+              placeholder="Max" 
+              class="price-input"
+            >
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="properties-main">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <div class="results-info">
+            <span class="results-count">{{ filteredProperties.length }} Properties Found</span>
+          </div>
+          <div class="toolbar-actions">
+            <select [(ngModel)]="sortBy" (ngModelChange)="applyFilters()" class="sort-select">
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="area-high">Area: High to Low</option>
+              <option value="area-low">Area: Low to High</option>
+            </select>
+            <div class="view-toggle">
+              <button 
+                [class.active]="viewMode === 'grid'" 
+                (click)="viewMode = 'grid'"
+                class="view-btn"
+                title="Grid View"
+              >
+                <i class="fas fa-th"></i>
+              </button>
+              <button 
+                [class.active]="viewMode === 'list'" 
+                (click)="viewMode = 'list'"
+                class="view-btn"
+                title="List View"
+              >
+                <i class="fas fa-list"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Properties Grid/List -->
+        <div [class]="'properties-' + viewMode">
+          <div 
+            *ngFor="let property of paginatedProperties" 
+            class="property-card"
+            (click)="viewProperty(property.id)"
+          >
+            <div class="property-image">
+              <img [src]="property.image" [alt]="property.title">
+              <span *ngIf="property.featured" class="featured-badge">Featured</span>
+              <span class="status-badge" [class.for-rent]="property.status === 'For Rent'" [class.for-sale]="property.status === 'For Sale'">
+                {{ property.status }}
+              </span>
+            </div>
+            <div class="property-content">
+              <div class="property-header">
+                <h3>{{ property.title }}</h3>
+                <p class="property-location">
+                  <i class="fas fa-map-marker-alt"></i> {{ property.location }}
+                </p>
+              </div>
+              <div class="property-details">
+                <span *ngIf="property.bedrooms > 0">
+                  <i class="fas fa-bed"></i> {{ property.bedrooms }} Bed
+                </span>
+                <span *ngIf="property.bathrooms > 0">
+                  <i class="fas fa-bath"></i> {{ property.bathrooms }} Bath
+                </span>
+                <span>
+                  <i class="fas fa-ruler-combined"></i> {{ property.area }} sqft
+                </span>
+                <span *ngIf="property.parking && property.parking > 0">
+                  <i class="fas fa-car"></i> {{ property.parking }} Parking
+                </span>
+              </div>
+              <div class="property-footer">
+                <div class="property-price">
+                  <span class="price">{{ formatPrice(property.price) }}</span>
+                  <span class="price-period" *ngIf="property.status === 'For Rent'">/month</span>
+                </div>
+                <button class="view-details-btn" (click)="viewProperty(property.id); $event.stopPropagation()">View Details <i class="fas fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="paginatedProperties.length === 0" class="empty-state">
+          <i class="fas fa-search"></i>
+          <h3>No properties found</h3>
+          <p>Try adjusting your filters to see more results</p>
+          <button class="btn-primary" (click)="resetFilters()">Reset Filters</button>
+        </div>
+
+        <!-- Pagination -->
+        <div *ngIf="totalPages > 1" class="pagination">
+          <button 
+            [disabled]="currentPage === 1" 
+            (click)="changePage(currentPage - 1)"
+            class="page-btn"
+          >
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <div class="page-numbers">
+            <button 
+              *ngFor="let page of [].constructor(totalPages); let i = index"
+              [class.active]="currentPage === i + 1"
+              (click)="changePage(i + 1)"
+              class="page-number"
+            >
+              {{ i + 1 }}
+            </button>
+          </div>
+          <button 
+            [disabled]="currentPage === totalPages" 
+            (click)="changePage(currentPage + 1)"
+            class="page-btn"
+          >
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
