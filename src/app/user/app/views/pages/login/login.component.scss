@@ -51,6 +51,11 @@
   background: #fff;
 }
 
+.form-panel a {
+  position: relative;
+  z-index: 10;
+}
+
 .input-action {
   border: none;
   border-left: 1px solid rgba(0, 0, 0, 0.08);
