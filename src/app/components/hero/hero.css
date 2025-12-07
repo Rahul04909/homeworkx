@@ -76,12 +76,18 @@
     border-bottom: 1px solid #eee;
 }
 
-.search-col {
+.search-row .search-col {
     padding: 18px;
+    border-right: 1px solid #eee;
+}
+
+.search-row .search-col:first-child {
+    flex: 0 0 200px; /* Fixed width for 'I Want to' dropdown */
 }
 
 .search-input-col {
     flex-grow: 1;
+    border-right: none; /* Remove border from the last search-col */
 }
 
 .dropdown {
