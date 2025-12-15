@@ -56,6 +56,12 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
 
   constructor(private authService: AuthService, private router: Router) { }
 
+  ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/admin/dashboard']);
+    }
+  }
+
   togglePassword() {
     this.showPassword = !this.showPassword;
   }

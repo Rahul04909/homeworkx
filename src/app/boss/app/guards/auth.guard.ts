@@ -10,9 +10,12 @@ export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) { }
 
     canActivate(): boolean | UrlTree {
-        if (this.authService.isLoggedIn()) {
+        const isLoggedIn = this.authService.isLoggedIn();
+        console.log('AuthGuard Check: Is Logged In?', isLoggedIn);
+        if (isLoggedIn) {
             return true;
         } else {
+            console.warn('AuthGuard: Access denied, redirecting to login');
             return this.router.createUrlTree(['/admin/login']);
         }
     }

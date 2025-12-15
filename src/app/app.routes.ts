@@ -34,7 +34,7 @@ export const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./boss/app/app.routes').then(m => m.routes),
-    providers: [provideHttpClient(), AuthService]
+    providers: [provideHttpClient()]
   }
   ,
   {
