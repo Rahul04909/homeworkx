@@ -15,7 +15,7 @@ import {
   SpinnerComponent
 } from '@coreui/angular';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -24,6 +24,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   imports: [
+    RouterModule,
     ContainerComponent,
     RowComponent,
     ColComponent,
@@ -68,16 +69,21 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     this.isLoading = true;
     this.errorMessage = '';
 
+    console.log('Attempting login with:', this.credentials.email);
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
+        console.log('Login response:', response);
         this.isLoading = false;
         if (response.status === 'success') {
+          console.log('Login success, navigating to dashboard');
           this.router.navigate(['/admin/dashboard']);
         } else {
+          console.warn('Login failed with status:', response.status);
           this.errorMessage = response.message || 'Login failed';
         }
       },
       error: (error) => {
+        console.error('Login error:', error);
         this.isLoading = false;
         this.errorMessage = error.error?.message || 'An error occurred during login';
       }

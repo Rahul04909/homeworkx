@@ -87,9 +87,5 @@ export const navItems: INavData[] = [
     name: 'Update Password',
     url: '/profile/password',
     iconComponent: { name: 'cil-lock-locked' }
-  },
-  {
-    name: 'Logout',
-    url: '/logout'
   }
 ];

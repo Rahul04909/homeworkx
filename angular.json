@@ -15,8 +15,7 @@
           "options": {
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
-            ,
+              "zone.js",
               "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
@@ -60,6 +59,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",

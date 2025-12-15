@@ -3,9 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
-@Injectable()
+import { environment } from '../../../../environments/environment';
+
+@Injectable({
+    providedIn: 'root'
+})
 export class AuthService {
-    private apiUrl = 'https://homeworx.signatureglobal.in.net/api/login';
+    private apiUrl = environment.apiUrl;
     private tokenKey = 'admin_token';
     private userKey = 'admin_user';
 
@@ -14,6 +18,7 @@ export class AuthService {
     login(credentials: any): Observable<any> {
         return this.http.post<any>(this.apiUrl, credentials).pipe(
             tap(response => {
+                console.log('AuthService login response:', response);
                 if (response.status === 'success' && response.token) {
                     localStorage.setItem(this.tokenKey, response.token);
                     if (response.user) {
@@ -27,7 +32,7 @@ export class AuthService {
     logout() {
         localStorage.removeItem(this.tokenKey);
         localStorage.removeItem(this.userKey);
-        this.router.navigate(['/login']);
+        this.router.navigate(['/admin/login']);
     }
 
     isLoggedIn(): boolean {

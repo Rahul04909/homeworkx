@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 import { NgScrollbar } from 'ngx-scrollbar';
 
 import { IconDirective } from '@coreui/icons-angular';
@@ -12,11 +12,14 @@ import {
   SidebarHeaderComponent,
   SidebarNavComponent,
   SidebarToggleDirective,
-  SidebarTogglerDirective
+  SidebarTogglerDirective,
+  NavItemComponent,
+  NavLinkDirective
 } from '@coreui/angular';
 
 import { DefaultFooterComponent, DefaultHeaderComponent } from './';
 import { navItems } from './_nav';
+import { AuthService } from '../../services/auth.service';
 
 function isOverflown(element: HTMLElement) {
   return (
@@ -44,11 +47,20 @@ function isOverflown(element: HTMLElement) {
     NgScrollbar,
     RouterOutlet,
     RouterLink,
-    ShadowOnScrollDirective
+    ShadowOnScrollDirective,
+    NavItemComponent,
+    NavLinkDirective,
+    IconDirective
   ]
 })
 export class DefaultLayoutComponent {
   public navItems = prefixAdmin([...navItems]);
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  logout(): void {
+    this.authService.logout();
+  }
 }
 
 function prefixAdmin(items: any[]): any[] {
