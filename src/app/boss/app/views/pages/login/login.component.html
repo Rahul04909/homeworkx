@@ -19,12 +19,22 @@
               <form cForm>
                 <h1 class="mb-1">Admin Login</h1>
                 <p class="text-body-secondary mb-4">Sign in to continue</p>
+                
+                <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                  {{ errorMessage }}
+                </div>
 
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Email or Username" />
+                  <input 
+                    autoComplete="username" 
+                    cFormControl 
+                    placeholder="Email or Username" 
+                    [(ngModel)]="credentials.email"
+                    name="email"
+                  />
                 </c-input-group>
 
                 <c-input-group class="mb-2">
@@ -36,6 +46,8 @@
                     autoComplete="current-password"
                     cFormControl
                     placeholder="Password"
+                    [(ngModel)]="credentials.password"
+                    name="password"
                   />
                   <button type="button" cButton color="light" class="input-action" (click)="togglePassword()">
                     <i [class]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
@@ -50,7 +62,10 @@
                   <a class="text-decoration-none" routerLink="/admin/forgot-password">Forgot password?</a>
                 </div>
 
-                <button type="button" cButton color="primary" class="w-100 mb-3" (click)="login()">Login</button>
+                <button type="button" cButton color="primary" class="w-100 mb-3" (click)="login()" [disabled]="isLoading">
+                  <c-spinner *ngIf="isLoading" size="sm" class="me-2"></c-spinner>
+                  Login
+                </button>
 
                 <!-- <div class="divider">Or continue with</div>
 

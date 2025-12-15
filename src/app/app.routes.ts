@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { AuthService } from './boss/app/services/auth.service';
 
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent) },
@@ -31,7 +33,8 @@ export const routes: Routes = [
   { path: 'property-details/:id', loadComponent: () => import('../pages/property-details/property-details').then(m => m.PropertyDetailsComponent) },
   {
     path: 'admin',
-    loadChildren: () => import('./boss/app/app.routes').then(m => m.routes)
+    loadChildren: () => import('./boss/app/app.routes').then(m => m.routes),
+    providers: [provideHttpClient(), AuthService]
   }
   ,
   {
