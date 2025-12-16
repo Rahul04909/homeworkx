@@ -19,7 +19,7 @@
           <td>{{ getStateName(state) }}</td>
           <td>
             <button class="btn btn-sm text-white" [class.bg-success]="isStateEnabled(state)"
-              [class.bg-danger]="!isStateEnabled(state)">
+              [class.bg-danger]="!isStateEnabled(state)" (click)="toggleStateStatus(state)">
               {{ isStateEnabled(state) ? 'Enabled' : 'Disabled' }}
             </button>
           </td>

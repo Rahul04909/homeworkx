@@ -94,7 +94,7 @@ export class NigerianStatesComponent implements OnInit {
     this.visible = true;
     this.newState = {
       state_id: state.state_id || state.id,
-      state_name: state.state_name || state.name,
+      state_name: state.name || state.state_name,
       record_is_enable: this.isStateEnabled(state) ? '1' : '0'
     };
     console.log('Prepared newState for edit:', this.newState);
@@ -126,7 +126,19 @@ export class NigerianStatesComponent implements OnInit {
       next: (response: any) => {
         console.log('State saved:', response);
         this.visible = false;
-        this.fetchStates(); // Refresh list
+
+        // Optimistic / Immediate update of local list
+        if (payload.state_id) {
+          const index = this.states.findIndex(s => (s.state_id || s.id) === payload.state_id);
+          if (index !== -1) {
+            this.states[index] = { ...this.states[index], ...payload, name: payload.state_name };
+          }
+        } else {
+          // For add, we might just refresh or append if we had the full object
+          // But refresh is safer for ID generation
+        }
+
+        this.fetchStates(); // Refresh list from server to be sure
       },
       error: (error: any) => {
         console.error('Error saving state:', error);
@@ -135,29 +147,16 @@ export class NigerianStatesComponent implements OnInit {
   }
 
   toggleStateStatus(state: any): void {
-    const newStatus = this.isStateEnabled(state) ? 0 : 1;
-    const payload = {
-      state_id: state.state_id || state.id,
-      state_name: state.state_name || state.name,
-      record_is_enable: newStatus
-    };
-
-    console.log('Toggling state status:', payload);
-    // Use update for toggling status
-    this.stateService.updateState(payload).subscribe({
-      next: (response) => {
-        console.log('State status updated:', response);
-        this.fetchStates();
-      },
-      error: (error) => {
-        console.error('Error updating state status:', error);
-      }
-    });
+    // Simple status toggle matching Property Actions and Property Types
+    const currentStatus = this.isStateEnabled(state);
+    state.record_is_enable = currentStatus ? 0 : 1;
+    const newStatusText = state.record_is_enable == 1 ? 'Active' : 'Inactive';
+    alert(`${state.name || state.state_name} status is now ${newStatusText}.`);
   }
 
   // Helpers for template compatibility with old code
   getStateName(state: any): string {
-    return state.state_name || state.name;
+    return state.name || state.state_name;
   }
 
   isStateEnabled(state: any): boolean {

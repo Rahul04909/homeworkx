@@ -21,11 +21,12 @@ export class StateService {
     }
 
     updateState(stateData: any): Observable<any> {
-        // Use POST to /states (root) with 'id' in body to trigger update
+        const id = stateData.state_id || stateData.id;
+        const url = `${this.apiUrl}/${id}`;
         const payload = {
-            ...stateData,
-            id: stateData.state_id // Map state_id to id for backend
+            state_name: stateData.state_name || stateData.name,
+            record_is_enable: stateData.record_is_enable
         };
-        return this.http.post<any>(this.apiUrl, payload);
+        return this.http.put<any>(url, payload);
     }
 }

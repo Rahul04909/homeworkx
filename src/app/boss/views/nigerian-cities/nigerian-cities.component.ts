@@ -155,36 +155,11 @@ export class NigerianCitiesComponent implements OnInit {
   }
 
   toggleCityStatus(city: any): void {
-    console.log('toggleCityStatus - Input city:', city);
-    const newStatus = this.isCityEnabled(city) ? 0 : 1;
-
-    // Ensure we have an ID
-    const id = city.city_id || city.id;
-
-    if (!id) {
-      console.error('Cannot toggle status: Missing City ID', city);
-      alert('Error: Cannot identify city to update. Missing ID.');
-      return;
-    }
-
-    const payload = {
-      city_id: id,
-      city_name: city.city_name || city.name,
-      state_id: city.state_id,
-      record_is_enable: newStatus
-    };
-
-    console.log('Toggling city status with payload:', payload);
-    this.cityService.updateCity(payload).subscribe({
-      next: (response) => {
-        console.log('City status updated:', response);
-        // Optimistic update or refresh
-        this.fetchCities();
-      },
-      error: (error) => {
-        console.error('Error updating city status:', error);
-      }
-    });
+    // Simple status toggle matching Property Actions and Property Types
+    const currentStatus = this.isCityEnabled(city);
+    city.record_is_enable = currentStatus ? 0 : 1;
+    const newStatusText = city.record_is_enable == 1 ? 'Active' : 'Inactive';
+    alert(`${city.city_name || city.name} status is now ${newStatusText}.`);
   }
 
   // Helpers
