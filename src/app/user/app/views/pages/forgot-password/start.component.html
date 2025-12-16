@@ -22,12 +22,15 @@
 
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
-                    <svg cIcon name="cilUser"></svg>
+                    <svg cIcon name="cilEnvelopeClosed"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Email or Mobile" />
+                  <input autoComplete="email" cFormControl placeholder="Email" [(ngModel)]="email" name="email" />
                 </c-input-group>
 
-                <button type="button" cButton color="primary" class="w-100 mb-3" routerLink="/user/forgot-password/verify">Send OTP</button>
+                <button type="button" cButton color="primary" class="w-100 mb-3" (click)="submit()"
+                  [disabled]="loading">
+                  {{ loading ? 'Sending...' : 'Send OTP' }}
+                </button>
 
                 <div class="text-center mt-4 small">
                   <span class="text-body-secondary">Remembered it?</span>

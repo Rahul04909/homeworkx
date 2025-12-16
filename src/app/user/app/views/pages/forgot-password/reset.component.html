@@ -24,12 +24,8 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  <input
-                    [type]="showPassword ? 'text' : 'password'"
-                    autoComplete="new-password"
-                    cFormControl
-                    placeholder="New password"
-                  />
+                  <input [type]="showPassword ? 'text' : 'password'" autoComplete="new-password" cFormControl
+                    placeholder="New password" [(ngModel)]="password" name="password" />
                   <button type="button" cButton color="light" class="input-action" (click)="togglePassword()">
                     <i [class]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                   </button>
@@ -39,18 +35,15 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  <input
-                    [type]="showConfirm ? 'text' : 'password'"
-                    autoComplete="new-password"
-                    cFormControl
-                    placeholder="Confirm new password"
-                  />
+                  <input [type]="showConfirm ? 'text' : 'password'" autoComplete="new-password" cFormControl
+                    placeholder="Confirm new password" [(ngModel)]="confirmPassword" name="confirmPassword" />
                   <button type="button" cButton color="light" class="input-action" (click)="toggleConfirm()">
                     <i [class]="showConfirm ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                   </button>
                 </c-input-group>
 
-                <button type="button" cButton color="primary" class="w-100 mb-3" routerLink="/user/forgot-password/success">Update Password</button>
+                <button type="button" cButton color="primary" class="w-100 mb-3" (click)="submit()"
+                  [disabled]="loading">Update Password</button>
               </form>
             </c-card-body>
           </c-card>

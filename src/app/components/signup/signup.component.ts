@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserAuthService } from '../../user/app/services/user-auth.service';
 import { IconDirective } from '@coreui/icons-angular';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
@@ -242,7 +244,7 @@ export class SignupComponent implements OnInit {
 
   availableCities: string[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: UserAuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.role = this.initialRole;
@@ -314,8 +316,80 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    const payload = { role: this.role, ...this.form.value };
-    console.log('Signup submit', payload);
+    const val = this.form.value;
+
+    // Map usage role to API usertype
+    // Owner -> customer (as per prompt example)
+    // Agent -> agent? (Assuming 'agent' for now if supported, otherwise default to customer)
+    const usertype = this.role === 'owner' ? 'customer' : 'agent';
+
+    // Construct payload per API requirements
+    // API: {"name": "Test", "email": "...", "password": "...", "mobile": "...", "isd_code": "+91", "city": "Delhi", "usertype": "customer"}
+
+    // Determine city based on role
+    const city = this.role === 'owner' ? val.cityOwner : val.cityAgent;
+
+    const payload = {
+      name: val.name,
+      email: val.email,
+      password: val.password,
+      mobile: val.mobile,
+      isd_code: val.isd,
+      city: city,
+      usertype: usertype,
+      // Include extra agent fields if necessary, though API spec in prompt didn't list them. 
+      // We will send them in case the backend supports them flexibly.
+      ...(this.role === 'agent' ? {
+        business_name: val.businessName,
+        business_type: val.businessType,
+        address: val.address,
+        state: val.state,
+        zipcode: val.zipcode,
+        registration_details: val.registrationDetails,
+        tax_details: val.taxDetails
+      } : {})
+    };
+
+    console.log('Signup submit payload', payload);
+
+    this.authService.signup(payload).subscribe({
+      next: (response) => {
+        if (response.status === 'success') {
+          console.log('Signup successful', response);
+          // Redirect to dashboard or login
+          this.router.navigate(['/user/dashboard']);
+        } else {
+          alert('Signup failed: ' + (response.message || 'Unknown error'));
+        }
+      },
+      error: (err) => {
+        // Deep logging as requested
+        console.group('Signup API Error Details');
+        console.error('Full Error Object:', err);
+        console.error('Status:', err.status);
+        console.error('Status Text:', err.statusText);
+        console.error('Message:', err.message);
+        console.error('Error Body (err.error):', err.error);
+        if (err.error && err.error.errors) {
+          console.error('Validation Errors (err.error.errors):', err.error.errors);
+        }
+        console.groupEnd();
+
+        let msg = 'Signup error';
+        if (err.error) {
+          if (err.error.errors) {
+            // Larvel validation errors usually come as { errors: { field: ['msg'] } }
+            const errors = err.error.errors;
+            const firstKey = Object.keys(errors)[0];
+            msg = errors[firstKey][0];
+          } else if (err.error.message) {
+            msg = err.error.message;
+          } else if (typeof err.error === 'string') {
+            msg = err.error;
+          }
+        }
+        alert(msg);
+      }
+    });
   }
 }
-

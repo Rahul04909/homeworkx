@@ -1,38 +1,33 @@
 <!--<c-header class="mb-4 d-print-none" position="sticky">-->
 <ng-container>
   <c-container [fluid]="true" class="border-bottom px-4">
-    <button
-      [cSidebarToggle]="sidebarId()"
-      cHeaderToggler
-      class="btn"
-      toggle="visible"
-      style="margin-inline-start: -14px;"
-      aria-label="Toggle sidebar navigation"
-    >
+    <button [cSidebarToggle]="sidebarId()" cHeaderToggler class="btn" toggle="visible"
+      style="margin-inline-start: -14px;" aria-label="Toggle sidebar navigation">
       <svg cIcon name="cilMenu" size="lg"></svg>
     </button>
     <c-header-nav class="d-none d-md-flex">
       <c-nav-item>
-        <a cNavLink routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+        <a cNavLink routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/buy" routerLinkActive="active">Buy</a>
+        <a cNavLink routerLink="/user/buy" routerLinkActive="active">Buy</a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/rent" routerLinkActive="active">Rent</a>
+        <a cNavLink routerLink="/user/rent" routerLinkActive="active">Rent</a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/lease" routerLinkActive="active">Lease</a>
+        <a cNavLink routerLink="/user/lease" routerLinkActive="active">Lease</a>
       </c-nav-item>
       <c-nav-item>
-        <a cNavLink routerLink="/project" routerLinkActive="active">Project</a>
+        <a cNavLink routerLink="/user/project" routerLinkActive="active">Project</a>
       </c-nav-item>
       <c-nav-item>
-          <c-dropdown #toolsDropdown variant="nav-item" (mouseenter)="openToolsDropdown()" (mouseleave)="closeToolsDropdown()" [visible]="isToolsDropdownOpen">
+        <c-dropdown #toolsDropdown variant="nav-item" (mouseenter)="openToolsDropdown()"
+          (mouseleave)="closeToolsDropdown()" [visible]="isToolsDropdownOpen">
           <button cDropdownToggle class="nav-link">Tools</button>
           <ul cDropdownMenu>
-            <li><a cDropdownItem routerLink="/emi-loan-calculator">EMI Loan Calculator</a></li>
-            <li><a cDropdownItem routerLink="/roi-calculator">ROI Calculator</a></li>
+            <li><a cDropdownItem routerLink="/user/emi-loan-calculator">EMI Loan Calculator</a></li>
+            <li><a cDropdownItem routerLink="/user/roi-calculator">ROI Calculator</a></li>
           </ul>
         </c-dropdown>
       </c-nav-item>
@@ -74,14 +69,8 @@
 <ng-template #userDropdown>
   <c-dropdown [popperOptions]="{ placement: 'bottom-start' }" variant="nav-item">
     <button [caret]="false" cDropdownToggle class="py-0 pe-0" aria-label="Open user menu">
-      <c-avatar
-        shape="rounded-1"
-        size="md"
-        src="./assets/images/avatars/8.jpg"
-        status="success"
-        textColor="primary"
-        alt="User avatar"
-      />
+      <c-avatar shape="rounded-1" size="md" src="./assets/images/avatars/8.jpg" status="success" textColor="primary"
+        alt="User avatar" />
     </button>
     <ul cDropdownMenu class="pt-0 w-auto">
       <li>
@@ -165,7 +154,7 @@
         </a>
       </li>
       <li>
-        <a cDropdownItem routerLink="">
+        <a cDropdownItem (click)="logout()" style="cursor: pointer;">
           <svg cIcon class="me-2" name="cilAccountLogout"></svg>
           Logout
         </a>
@@ -181,15 +170,11 @@
     </button>
     <div cDropdownMenu>
       @for (mode of colorModes; track mode.name) {
-        <button
-          (click)="colorMode.set(mode.name)"
-          [active]="colorMode()===mode.name"
-          cDropdownItem
-          class="d-flex align-items-center"
-        >
-          <svg cIcon class="me-2" [name]="mode.icon" size="lg"></svg>
-          {{ mode.text }}
-        </button>
+      <button (click)="colorMode.set(mode.name)" [active]="colorMode()===mode.name" cDropdownItem
+        class="d-flex align-items-center">
+        <svg cIcon class="me-2" [name]="mode.icon" size="lg"></svg>
+        {{ mode.text }}
+      </button>
       }
     </div>
   </c-dropdown>

@@ -23,6 +23,7 @@ import {
 } from '@coreui/angular';
 
 import { IconDirective } from '@coreui/icons-angular';
+import { UserAuthService } from '../../../services/user-auth.service';
 
 @Component({
   selector: 'app-default-header',
@@ -46,8 +47,12 @@ export class DefaultHeaderComponent extends HeaderComponent {
     return this.colorModes.find(mode => mode.name === currentMode)?.icon ?? 'cilSun';
   });
 
-  constructor() {
+  constructor(private authService: UserAuthService) {
     super();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
   @ViewChild('toolsDropdown', { static: true }) toolsDropdown!: DropdownComponent;

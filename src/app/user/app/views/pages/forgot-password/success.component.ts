@@ -1,11 +1,13 @@
 import { Component, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { ButtonDirective, CardBodyComponent, CardComponent, CardGroupComponent, ColComponent, ContainerComponent, RowComponent } from '@coreui/angular';
 
+import { RouterModule } from '@angular/router';
+
 @Component({
   selector: 'app-forgot-success',
   templateUrl: './success.component.html',
   styleUrls: ['./success.component.scss'],
-  imports: [ContainerComponent, RowComponent, ColComponent, CardGroupComponent, CardComponent, CardBodyComponent, ButtonDirective]
+  imports: [ContainerComponent, RowComponent, ColComponent, CardGroupComponent, CardComponent, CardBodyComponent, ButtonDirective, RouterModule]
 })
 export class ForgotSuccessComponent implements AfterViewInit, OnDestroy {
   @ViewChild('lottieContainer', { static: false }) lottieContainer?: ElementRef<HTMLDivElement>;

@@ -24,30 +24,30 @@
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" cFormControl placeholder="Email or Username" />
+                  <input autoComplete="email" cFormControl placeholder="Email" [(ngModel)]="email" name="email" />
                 </c-input-group>
 
                 <c-input-group class="mb-2">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
-                  <input
-                    [type]="showPassword ? 'text' : 'password'"
-                    autoComplete="current-password"
-                    cFormControl
-                    placeholder="Password"
-                  />
+                  <input [type]="showPassword ? 'text' : 'password'" autoComplete="current-password" cFormControl
+                    placeholder="Password" [(ngModel)]="password" name="password" />
                   <button type="button" cButton color="light" class="input-action" (click)="togglePassword()">
                     <i [class]="showPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye'"></i>
                   </button>
                 </c-input-group>
+
+                <div *ngIf="errorMessage" class="alert alert-danger mb-3 py-2">
+                  {{ errorMessage }}
+                </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-3 small">
                   <label class="form-check-label">
                     <input class="form-check-input me-2" type="checkbox" />
                     Remember me
                   </label>
-                <button><a class="text-decoration-none" routerLink="/forgot-password">Forgot password?</a></button>
+                  <button><a class="text-decoration-none" routerLink="/forgot-password">Forgot password?</a></button>
                 </div>
 
                 <button type="button" cButton color="primary" class="w-100 mb-3" (click)="login()">Login</button>
@@ -67,7 +67,7 @@
 
                 <div class="text-center mt-4 small">
                   <span class="text-body-secondary">New here?</span>
-                 <button><a routerLink="/register" class="ms-1">Create an account</a></button>
+                  <button><a routerLink="/register" class="ms-1">Create an account</a></button>
                 </div>
               </form>
             </c-card-body>
