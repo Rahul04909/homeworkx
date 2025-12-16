@@ -1,0 +1,205 @@
+<c-container fluid>
+    <c-row class="justify-content-center">
+        <c-col md="10" lg="8" xl="8">
+            <!-- Message Alert -->
+            <div *ngIf="message" class="alert" [ngClass]="'alert-' + messageType" role="alert">
+                {{ message }}
+            </div>
+
+            <c-card class="mb-4">
+                <c-card-header>
+                    <strong>My Profile</strong>
+                </c-card-header>
+                <c-card-body>
+                    <c-tabs [activeItemKey]="0" (activeItemKeyChange)="onTabChange($event)">
+                        <c-tabs-list variant="underline-border">
+                            <button cTab [itemKey]="0">
+                                <svg cIcon name="cilUser" class="me-2"></svg>
+                                Profile Details
+                            </button>
+                            <button cTab [itemKey]="1">
+                                <svg cIcon name="cilLockLocked" class="me-2"></svg>
+                                Security
+                            </button>
+                        </c-tabs-list>
+                        <c-tabs-content>
+                            <!-- Tab 1: Profile Details -->
+                            <c-tab-panel [itemKey]="0" class="p-3">
+                                <form cForm [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+                                    <!-- Common Fields -->
+                                    <c-row class="mb-3">
+                                        <c-col md="6">
+                                            <label cLabel>Full Name</label>
+                                            <input cFormControl formControlName="name"
+                                                placeholder="Enter your full name">
+                                            <div class="text-danger small"
+                                                *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+                                                Name is required (min 2 chars)
+                                            </div>
+                                        </c-col>
+                                        <c-col md="6">
+                                            <label cLabel>Email Address</label>
+                                            <input cFormControl formControlName="email" type="email" placeholder="Email"
+                                                readonly title="Email cannot be changed">
+                                        </c-col>
+                                    </c-row>
+
+                                    <c-row class="mb-3">
+                                        <c-col md="6">
+                                            <label cLabel>Mobile Number</label>
+                                            <c-input-group>
+                                                <select cSelect class="flex-shrink-0" style="max-width: 100px"
+                                                    formControlName="isd_code">
+                                                    <option *ngFor="let code of isdCodes" [value]="code">{{ code }}
+                                                    </option>
+                                                </select>
+                                                <input cFormControl formControlName="mobile"
+                                                    placeholder="Mobile Number">
+                                            </c-input-group>
+                                        </c-col>
+
+                                        <c-col md="6" *ngIf="userRole === 'customer'">
+                                            <label cLabel>City</label>
+                                            <input cFormControl formControlName="city" placeholder="City">
+                                        </c-col>
+                                    </c-row>
+
+                                    <!-- Agent Specific Fields -->
+                                    <ng-container *ngIf="userRole === 'agent'">
+                                        <hr class="my-4">
+                                        <h5 class="mb-3 text-secondary">Business Details</h5>
+
+                                        <c-row class="mb-3">
+                                            <c-col md="6">
+                                                <label cLabel>Business Name</label>
+                                                <input cFormControl formControlName="business_name"
+                                                    placeholder="Business Name">
+                                            </c-col>
+                                            <c-col md="6">
+                                                <label cLabel>Business Type</label>
+                                                <input cFormControl formControlName="business_type"
+                                                    placeholder="e.g. Real Estate Agency">
+                                            </c-col>
+                                        </c-row>
+
+                                        <c-row class="mb-3">
+                                            <c-col md="12">
+                                                <label cLabel>Address</label>
+                                                <textarea cFormControl formControlName="address" rows="2"
+                                                    placeholder="Full Address"></textarea>
+                                            </c-col>
+                                        </c-row>
+
+                                        <c-row class="mb-3">
+                                            <c-col md="6">
+                                                <label cLabel>State</label>
+                                                <select cSelect formControlName="state"
+                                                    (change)="onStateChange($any($event.target).value)">
+                                                    <option value="">Select State</option>
+                                                    <option *ngFor="let st of nigeriaStates" [value]="st">{{ st }}
+                                                    </option>
+                                                </select>
+                                            </c-col>
+                                            <c-col md="6">
+                                                <label cLabel>City</label>
+                                                <select cSelect formControlName="city">
+                                                    <option value="">Select City</option>
+                                                    <option *ngFor="let ct of availableCities" [value]="ct">{{ ct }}
+                                                    </option>
+                                                </select>
+                                            </c-col>
+                                        </c-row>
+
+                                        <c-row class="mb-3">
+                                            <c-col md="4">
+                                                <label cLabel>Zipcode</label>
+                                                <input cFormControl formControlName="zipcode" placeholder="Zipcode">
+                                            </c-col>
+                                            <c-col md="4">
+                                                <label cLabel>Registration No.</label>
+                                                <input cFormControl formControlName="registration_details"
+                                                    placeholder="RC Number">
+                                            </c-col>
+                                            <c-col md="4">
+                                                <label cLabel>Tax ID</label>
+                                                <input cFormControl formControlName="tax_details" placeholder="TIN">
+                                            </c-col>
+                                        </c-row>
+                                    </ng-container>
+
+                                    <div class="mt-4 text-end">
+                                        <button cButton color="primary" type="submit" [disabled]="isLoading">
+                                            <span *ngIf="isLoading"
+                                                class="spinner-border spinner-border-sm me-1"></span>
+                                            Update Profile
+                                        </button>
+                                    </div>
+                                </form>
+                            </c-tab-panel>
+
+                            <!-- Tab 2: Security (Change Password) -->
+                            <c-tab-panel [itemKey]="1" class="p-3">
+                                <form cForm [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+
+                                    <div class="mb-3">
+                                        <label cLabel>Current Password</label>
+                                        <c-input-group>
+                                            <span cInputGroupText>
+                                                <svg cIcon name="cilLockLocked"></svg>
+                                            </span>
+                                            <input cFormControl formControlName="current_password" type="password"
+                                                placeholder="Enter current password">
+                                        </c-input-group>
+                                        <div class="text-danger small"
+                                            *ngIf="passwordForm.get('current_password')?.touched && passwordForm.get('current_password')?.invalid">
+                                            Current password is required
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label cLabel>New Password</label>
+                                        <c-input-group>
+                                            <span cInputGroupText>
+                                                <svg cIcon name="cilLockLocked"></svg>
+                                            </span>
+                                            <input cFormControl formControlName="new_password" type="password"
+                                                placeholder="Enter new password (min 6 chars)">
+                                        </c-input-group>
+                                        <div class="text-danger small"
+                                            *ngIf="passwordForm.get('new_password')?.touched && passwordForm.get('new_password')?.invalid">
+                                            New password is required (min 6 characters)
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label cLabel>Confirm New Password</label>
+                                        <c-input-group>
+                                            <span cInputGroupText>
+                                                <svg cIcon name="cilLockLocked"></svg>
+                                            </span>
+                                            <input cFormControl formControlName="new_password_confirmation"
+                                                type="password" placeholder="Confirm new password">
+                                        </c-input-group>
+                                        <div class="text-danger small"
+                                            *ngIf="passwordForm.hasError('mismatch') && passwordForm.get('new_password_confirmation')?.touched">
+                                            Passwords do not match
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 text-end">
+                                        <button cButton color="danger" type="submit" [disabled]="isLoading">
+                                            <span *ngIf="isLoading"
+                                                class="spinner-border spinner-border-sm me-1"></span>
+                                            Change Password
+                                        </button>
+                                    </div>
+
+                                </form>
+                            </c-tab-panel>
+                        </c-tabs-content>
+                    </c-tabs>
+                </c-card-body>
+            </c-card>
+        </c-col>
+    </c-row>
+</c-container>

@@ -80,4 +80,16 @@ export class UserAuthService {
     resetPassword(data: { email: string, otp: string, new_password: string, new_password_confirmation: string }): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/reset-password`, data);
     }
+
+    getProfile(): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/profile`);
+    }
+
+    updateProfile(data: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/profile/update`, data);
+    }
+
+    changePassword(data: any): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/change-password`, data);
+    }
 }

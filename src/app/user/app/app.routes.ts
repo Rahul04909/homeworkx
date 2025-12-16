@@ -76,6 +76,22 @@ export const routes: Routes = [
         loadChildren: () => import('./views/dashboard/routes').then((m) => m.routes)
       },
       {
+        path: 'profile',
+        loadComponent: () => import('./views/profile/profile.component').then(m => m.ProfileComponent),
+        data: {
+          title: 'My Profile'
+        }
+      },
+      // Handling sub-routes pointing to the same component for tab usage or specific views
+      {
+        path: 'profile/password',
+        redirectTo: 'profile'
+      },
+      {
+        path: 'profile/close-account',
+        redirectTo: 'profile' /* Placeholder for now */
+      },
+      {
         path: 'buy',
         loadComponent: () => import('./views/empty/empty.component').then(m => m.EmptyComponent),
         data: {
