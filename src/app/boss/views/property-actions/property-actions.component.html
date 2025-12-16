@@ -10,8 +10,6 @@
     </div>
   </div>
   <div class="card-body">
-
-
     <table class="table table-hover table-outline mb-0 d-none d-sm-table">
       <thead class="thead-light">
         <tr>
@@ -22,11 +20,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let action of propertyActions">
-          <td>{{ action.id }}</td>
-          <td>{{ action.name }}</td>
+        <tr *ngFor="let action of propertyActions; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ getActionName(action) }}</td>
           <td>
-            <button class="btn btn-sm" [ngClass]="{'btn-warning': action.status === 'Active', 'btn-success': action.status === 'Inactive'}" (click)="toggleStatus(action)">
+            <button class="btn btn-sm"
+              [ngClass]="{'btn-warning': action.status === 'Active', 'btn-success': action.status === 'Inactive'}"
+              (click)="toggleStatus(action)">
               {{ action.status === 'Active' ? 'Disable' : 'Enable' }}
             </button>
           </td>
@@ -34,9 +34,33 @@
             <button class="btn btn-info btn-sm" (click)="editAction(action)">Edit</button>
           </td>
         </tr>
+        <tr *ngIf="propertyActions.length === 0">
+          <td colspan="4" class="text-center">No property action types found.</td>
+        </tr>
       </tbody>
     </table>
-
-
   </div>
 </div>
+
+<c-modal id="propertyActionModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>{{ newAction.ppt_action_type_id ? 'Edit Property Action Type' : 'Add New Property Action Type' }}
+    </h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm>
+      <div class="mb-3">
+        <label cLabel for="pptActionTypeName">Property Action Type Name</label>
+        <input cFormControl id="pptActionTypeName" placeholder="Enter property action type name (e.g., Sell, Rent)"
+          [(ngModel)]="newAction.ppt_action_type_name" name="pptActionTypeName" />
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary" (click)="submitNewAction()">Save changes</button>
+  </c-modal-footer>
+</c-modal>

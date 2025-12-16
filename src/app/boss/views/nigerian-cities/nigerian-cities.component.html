@@ -17,18 +17,53 @@
       <tbody>
         <tr *ngFor="let city of cities; let i = index">
           <td>{{ i + 1 }}</td>
-          <td>{{ city.name }}</td>
-          <td>{{ city.state }}</td>
+          <td>{{ getCityName(city) }}</td>
+          <td>{{ getStateName(city.state_id) }}</td>
           <td>
-            <button class="btn btn-sm" [class.bg-success]="city.enabled" [class.bg-danger]="!city.enabled" (click)="toggleCityStatus(city)">
-              {{ city.enabled ? 'Enabled' : 'Disabled' }}
+            <button class="btn btn-sm text-white" [class.bg-success]="isCityEnabled(city)"
+              [class.bg-danger]="!isCityEnabled(city)" (click)="toggleCityStatus(city)">
+              {{ isCityEnabled(city) ? 'Enabled' : 'Disabled' }}
             </button>
           </td>
           <td>
             <button class="btn btn-sm btn-info me-2" (click)="editCity(city)">Edit</button>
           </td>
         </tr>
+        <tr *ngIf="cities.length === 0">
+          <td colspan="5" class="text-center">No cities found.</td>
+        </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<c-modal id="cityModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>{{ newCity.city_id ? 'Edit City' : 'Add New City' }}</h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm>
+      <div class="mb-3">
+        <label cLabel for="cityName">City Name</label>
+        <input cFormControl id="cityName" placeholder="Enter city name" [(ngModel)]="newCity.city_name"
+          name="cityName" />
+      </div>
+      <div class="mb-3">
+        <label cLabel for="cityState">State</label>
+        <select cSelect id="cityState" [(ngModel)]="newCity.state_id" name="cityState">
+          <option [ngValue]="null" disabled>Select State</option>
+          <option *ngFor="let state of states" [value]="state.state_id || state.id">
+            {{ state.state_name || state.name }}
+          </option>
+        </select>
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary" (click)="submitNewCity()">Save changes</button>
+  </c-modal-footer>
+</c-modal>

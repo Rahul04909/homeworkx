@@ -10,8 +10,6 @@
     </div>
   </div>
   <div class="card-body">
-
-
     <table class="table table-hover table-outline mb-0 d-none d-sm-table">
       <thead class="thead-light">
         <tr>
@@ -22,11 +20,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let type of propertyTypes">
-          <td>{{ type.id }}</td>
-          <td>{{ type.name }}</td>
+        <tr *ngFor="let type of propertyTypes; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ getTypeName(type) }}</td>
           <td>
-            <button class="btn btn-sm" [ngClass]="{'btn-warning': type.status === 'Active', 'btn-success': type.status === 'Inactive'}" (click)="toggleStatus(type)">
+            <button class="btn btn-sm"
+              [ngClass]="{'btn-warning': type.status === 'Active', 'btn-success': type.status === 'Inactive'}"
+              (click)="toggleStatus(type)">
               {{ type.status === 'Active' ? 'Disable' : 'Enable' }}
             </button>
           </td>
@@ -34,9 +34,32 @@
             <button class="btn btn-info btn-sm" (click)="editType(type)">Edit</button>
           </td>
         </tr>
+        <tr *ngIf="propertyTypes.length === 0">
+          <td colspan="4" class="text-center">No property types found.</td>
+        </tr>
       </tbody>
     </table>
-
-
   </div>
 </div>
+
+<c-modal id="propertyTypeModal" [visible]="visible" (visibleChange)="handleLiveDemoChange($event)">
+  <c-modal-header>
+    <h5 cModalTitle>{{ newType.ppt_type_id ? 'Edit Property Type' : 'Add New Property Type' }}</h5>
+    <button (click)="toggleLiveDemo()" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <form cForm>
+      <div class="mb-3">
+        <label cLabel for="pptTypeName">Property Type Name</label>
+        <input cFormControl id="pptTypeName" placeholder="Enter property type name" [(ngModel)]="newType.ppt_type_name"
+          name="pptTypeName" />
+      </div>
+    </form>
+  </c-modal-body>
+  <c-modal-footer>
+    <button (click)="toggleLiveDemo()" cButton color="secondary">
+      Close
+    </button>
+    <button cButton color="primary" (click)="submitNewType()">Save changes</button>
+  </c-modal-footer>
+</c-modal>
