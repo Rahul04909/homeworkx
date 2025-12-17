@@ -17,7 +17,8 @@ import {
   NavLinkDirective
 } from '@coreui/angular';
 
-import { DefaultFooterComponent, DefaultHeaderComponent } from './';
+import { DefaultFooterComponent } from './default-footer/default-footer.component';
+import { DefaultHeaderComponent } from './default-header/default-header.component';
 import { navItems } from './_nav';
 import { AuthService } from '../../services/auth.service';
 
