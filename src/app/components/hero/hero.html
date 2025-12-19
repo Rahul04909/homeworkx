@@ -3,7 +3,7 @@
     <div class="hero-content">
         <h1>Find Your Dream Property in Nigeria</h1>
         <p>Verified listings, transparent pricing, and personalized service — all in one place.</p>
-        
+
         <!-- <div class="property-tabs">
             <button class="tab-btn active"><i class="fas fa-home" style="color: #FFA500"></i> Buy</button>
             <button class="tab-btn"><i class="fas fa-key"></i> Rent</button>
@@ -13,7 +13,7 @@
             <button class="tab-btn"><i class="fas fa-hotel"></i> PG/Hostels</button>
             
         </div> -->
-        
+
         <div class="search-container">
             <div class="filter-row">
                 <div class="filter-col">
@@ -26,10 +26,18 @@
                 </div>
                 <div class="filter-col">
                     <div class="dropdown">
-                        <button class="dropdown-btn">
-                            <span>Select State</span>
+                        <button class="dropdown-btn" (click)="toggleStateDropdown()">
+                            <span>{{ selectedState }}</span>
                             <i class="fas fa-chevron-down"></i>
                         </button>
+                        <div class="dropdown-menu" *ngIf="showStateDropdown">
+                            <div class="dropdown-item" *ngFor="let state of states" (click)="selectState(state)">
+                                {{ getStateName(state) }}
+                            </div>
+                            <div class="dropdown-item no-states" *ngIf="states.length === 0">
+                                No states available
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="filter-col">
@@ -51,7 +59,7 @@
 
 
             </div>
-            
+
             <div class="search-row">
                 <div class="search-col">
                     <div class="dropdown">
@@ -69,7 +77,8 @@
                             <!-- <button class="search-action-btn" title="Voice Search"><i class="fas fa-microphone"></i></button>
                             <button class="search-action-btn" title="map-search"><i class="fas fa-map-marker-alt"></i></button> -->
                         </div>
-                        <button class="search-btn" (click)="searchProperties()"><i class="fas fa-search"></i> Search Now</button>
+                        <button class="search-btn" (click)="searchProperties()"><i class="fas fa-search"></i> Search
+                            Now</button>
                     </div>
                 </div>
             </div>
