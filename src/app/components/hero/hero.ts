@@ -36,13 +36,21 @@ export class Hero implements OnInit {
     this.stateService.getStates().subscribe({
       next: (response: any) => {
         console.log('States fetched for hero:', response);
+
+        let allStates: any[] = [];
+
         if (Array.isArray(response)) {
-          this.states = response.filter((state: any) => this.isStateEnabled(state));
+          allStates = response;
         } else if (response.data && Array.isArray(response.data)) {
-          this.states = response.data.filter((state: any) => this.isStateEnabled(state));
+          allStates = response.data;
         } else {
-          this.states = [];
+          allStates = [];
         }
+
+        // Filter to show only enabled states
+        this.states = allStates.filter((state: any) => this.isStateEnabled(state));
+
+        console.log('Enabled states for dropdown:', this.states);
       },
       error: (error) => {
         console.error('Error fetching states in hero:', error);
